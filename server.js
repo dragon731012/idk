@@ -1,33 +1,26 @@
-var http = require('http'),
-    httpProxy = require('http-proxy');
+var http = require('http');
 
-//
-// Create a proxy server with custom application logic
-//
-var proxy = httpProxy.createProxyServer({});
+http.createServer(onRequest).listen(3000);
 
-// To modify the proxy connection before data is sent, you can listen
-// for the 'proxyReq' event. When the event is fired, you will receive
-// the following arguments:
-// (http.ClientRequest proxyReq, http.IncomingMessage req,
-//  http.ServerResponse res, Object options). This mechanism is useful when
-// you need to modify the proxy request before the proxy connection
-// is made to the target.
-//
-proxy.on('proxyReq', function(proxyReq, req, res, options) {
-  proxyReq.setHeader('X-Frame-Options', 'yeet');
-  proxyReq.setHeader('Content-Security-Policy', 'frame-ancestors *');
-});
+function onRequest(client_req, client_res) {
+  console.log('serve: ' + client_req.url);
 
-var server = http.createServer(function(req, res) {
-  // You can define here your custom logic to handle the request
-  // and then proxy the request.
-  res.writeHead(200, { 'Content-Type': 'text/plain' });
-  proxy.web(req, res, {
-    target: 'http://www.itch.io',
-    changeOrigin: true
+  var options = {
+    hostname: 'www.google.com',
+    port: 80,
+    path: client_req.url,
+    method: client_req.method,
+    headers: client_req.headers
+  };
+
+  var proxy = http.request(options, function (res) {
+    client_res.writeHead(res.statusCode, res.headers)
+    res.pipe(client_res, {
+      end: true
+    });
   });
-});
 
-console.log("listening on port 3000")
-server.listen(3000);
+  client_req.pipe(proxy, {
+    end: true
+  });
+}
