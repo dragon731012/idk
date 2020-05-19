@@ -22,7 +22,7 @@ proxy.on('proxyReq', function(proxyReq, req, res, options) {
 var server = http.createServer(function(req, res) {
   // You can define here your custom logic to handle the request
   // and then proxy the request.
-  res.writeHead(200, { 'Content-Type': 'text/plain' });
+  //res.writeHead(200, { 'Content-Type': 'text/plain' });
   proxy.web(req, res, {
     target: 'http://www.itch.io',
     changeOrigin: true
