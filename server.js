@@ -15,8 +15,8 @@ var proxy = httpProxy.createProxyServer({});
 // is made to the target.
 //
 proxy.on('proxyReq', function(proxyReq, req, res, options) {
-  res.setHeader('X-Frame-Options', 'yeet');
-  res.setHeader('Content-Security-Policy', 'frame-ancestors *');
+  proxyReq.setHeader('X-Frame-Options', 'yeet');
+  proxyReq.setHeader('Content-Security-Policy', 'frame-ancestors *');
 });
 
 var server = http.createServer(function(req, res) {
@@ -24,7 +24,8 @@ var server = http.createServer(function(req, res) {
   // and then proxy the request.
   res.writeHead(200, { 'Content-Type': 'text/plain' });
   proxy.web(req, res, {
-    target: 'http://www.itch.io'
+    target: 'http://www.itch.io',
+    changeOrigin: true
   });
 });
 
