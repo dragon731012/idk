@@ -1,8 +1,7 @@
-const http = require('http');
-const httpProxy = require('http-proxy');
-
-const proxy = httpProxy.createProxyServer().listen(8000);;
-
-http.createServer(function(req, res) {
-  proxy.web(req, res, { target: 'https://www.google.com/' });
-});
+const express = require('express');
+const { createProxyMiddleware } = require('http-proxy-middleware');
+ 
+const app = express();
+ 
+app.use('/', createProxyMiddleware({ target: 'http://itch.io', changeOrigin: true }));
+app.listen(3000);
