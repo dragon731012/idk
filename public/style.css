@@ -76,6 +76,7 @@ button[title="Close"]:hover {
   border-right: 1px solid gray;
   flex-grow: 1;
   max-width: 200px;
+  padding: 5px;
 }
 
 /* Styles for Searchbar */
@@ -96,7 +97,7 @@ button[title="Close"]:hover {
 /* Styles for Bookmarks */
 
 #bookmarks {
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid var(--bg-color);
   padding: 5px;
   padding-top: 0;
   background-color: var(--focus-color);
