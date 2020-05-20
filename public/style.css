@@ -73,6 +73,7 @@ button[title="Close"]:hover {
 
 #selected {
   background-color: var(--focus-color);
+  border: 0;
 }
 
 .tab {
