@@ -1,6 +1,7 @@
 :root {
   --focus-color: white;
   --bg-color: rgb(233, 233, 233);
+  --button-fade: rgba(0, 0, 0, 0.1);
 }
 
 * {
@@ -26,22 +27,20 @@ iframe {
 }
 
 @keyframes fadein {
-  from {background-color: transparent;}
-  to {background-color: rgba(0, 0, 0, 0.1);}
+  /*from {background-color: red;}*/
+  to {background-color: var(--button-fade);}
 }
 
 button {
   animation-fill-mode: both;
   cursor: pointer;
   border-radius: 999px;
-  animation-name: fadein;
-  animation-direction: reverse;
-  animation-duration: 1s;
+  animation-name: fadeout;
+  animation-duration: 500ms;
 }
 
 button:hover {
   animation-name: fadein;
-  animation-direction: normal;
   animation-duration: 500ms;
 }
 
@@ -50,6 +49,14 @@ button:hover {
 #topbar {
   display: flex;
   background-color: var(--bg-color);
+}
+
+#control > button {
+  border-radius: 0;
+}
+
+button[title="Close"]:hover {
+  --button-fade: red;
 }
 
 #topbar > div {
