@@ -9,6 +9,7 @@ body {
 
 #topbar {
   display: flex;
+  border-bottom: 1px solid black;
 }
 
 #topbar > div {
@@ -21,4 +22,17 @@ body {
 
 .tab {
   border-right: 1px solid black;
+  flex-grow: 1;
+  max-width: 200px;
+}
+
+/* Styles for Searchbar */
+
+#searchbar {
+  display: flex;
+}
+
+#searchbox {
+  flex-grow: 1;
+  border-radius: 20%;
 }
