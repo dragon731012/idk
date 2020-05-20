@@ -1,12 +1,13 @@
 :root {
   --focus-color: white;
   --bg-color: rgb(233, 233, 233);
-  --button-fade: rgba(0, 0, 0, 0.1);
+  --button-fade: rgba(127, 127, 127, 0.2);
 }
 
 * {
   box-sizing: border-box;
   border: 0;
+  user-select: none;
 }
 
 body {
