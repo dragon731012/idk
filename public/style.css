@@ -20,14 +20,29 @@ iframe {
   border: 0;
 }
 
+@keyframes fadeout {
+  /*from {background-color: red;}*/
+  to {background-color: transparent;}
+}
+
+@keyframes fadein {
+  from {background-color: transparent;}
+  to {background-color: rgba(0, 0, 0, 0.1);}
+}
+
 button {
+  animation-fill-mode: both;
   cursor: pointer;
-  background-color: transparent;
   border-radius: 999px;
+  animation-name: fadein;
+  animation-direction: reverse;
+  animation-duration: 1s;
 }
 
 button:hover {
-  background-color: rgba(0, 0, 0, 0.2);
+  animation-name: fadein;
+  animation-direction: normal;
+  animation-duration: 500ms;
 }
 
 /* Styles for topbar */
@@ -77,4 +92,8 @@ button:hover {
   padding: 5px;
   padding-top: 0;
   background-color: var(--focus-color);
+}
+
+.bookmark {
+  padding: 5px;
 }
