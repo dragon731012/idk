@@ -7,18 +7,18 @@ body {
   margin: 0;
 }
 
-/*#topbar > div {
-  display: inline-block;
-}*/
+#topbar {
+  display: flex;
+}
+
+#topbar > div {
+  display: flex;
+}
 
 #tabs {
-  display: inline-flex;
   width: 100%;
 }
 
-#control {
-  /*position: absolute;
-  right: 0;
-  float: right;*/
-  display: inline;
+.tab {
+  border-right: 1px solid black;
 }
