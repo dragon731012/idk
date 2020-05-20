@@ -5,7 +5,15 @@
 body {
   padding: 0;
   margin: 0;
+  height: 100vh;
 }
+
+iframe {
+  width: 100%;
+  height: 100%;
+}
+
+/* Styles for topbar */
 
 #topbar {
   display: flex;
