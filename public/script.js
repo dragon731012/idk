@@ -2,7 +2,7 @@ document.onload = function() {
   new BrowserWindow();
 };
 
-class BrowserWindow extends PopupWindow {
+class BrowserWindow {
   constructor(width=0, height=0) {
     
   }
@@ -22,7 +22,7 @@ class BrowserWindow extends PopupWindow {
 
 class PopupWindow {
   constructor(width=0, height=0) {
-    super(100, 100);
+    //super(100, 100);
   }
   
   minimise() {
