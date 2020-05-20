@@ -7,12 +7,17 @@ body {
   margin: 0;
 }
 
+/*#topbar > div {
+  display: inline-block;
+}*/
+
 #tabs {
-  display: flex;
+  display: inline-flex;
   width: 100%;
 }
 
 #control {
-  position: absolute;
-  right: 0;
+  /*position: absolute;
+  right: 0;*/
+  float: right;
 }
