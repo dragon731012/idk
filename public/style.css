@@ -1,5 +1,6 @@
 :root {
-  --focus-color: 
+  --focus-color: white;
+  --bg-color: rgb(233, 233, 233);
 }
 
 * {
@@ -22,7 +23,7 @@ iframe {
 
 #topbar {
   display: flex;
-  background-color: rgb(233, 233, 233);
+  background-color: var(--bg-color);
 }
 
 #topbar > div {
@@ -34,7 +35,7 @@ iframe {
 }
 
 #selected {
-  background-color: white;
+  background-color: var(--focus-color);
 }
 
 .tab {
@@ -48,6 +49,7 @@ iframe {
 #searchbar {
   display: flex;
   padding: 5px;
+  background-color: var(--focus-color);
 }
 
 #searchbox {
@@ -62,4 +64,5 @@ iframe {
   border-bottom: 1px solid gray;
   padding: 5px;
   padding-top: 0;
+  background-color: var(--focus-color);
 }
