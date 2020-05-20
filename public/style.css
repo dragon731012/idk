@@ -56,7 +56,8 @@ button:hover {
 }
 
 button[title="Close"]:hover {
-  --button-fade: red;
+  --button-fade: rgb(232, 17, 35);
+  color: white
 }
 
 #topbar > div {
