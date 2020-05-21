@@ -8,14 +8,12 @@ class CustomWindow {
   constructor(width=0, height=0) {
     this.width = width;
     this.height = height;
-    
-    
-    this.tasks = [];
+    this.ready()
   }
 
   async ready() {
     // await super.ready()
-    return CustomWindow.template;
+    CustomWindow.template;
     //var template = await bla;
   }
   
@@ -36,8 +34,7 @@ class BrowserWindow extends CustomWindow {
   static template = fetch("/index.html").then(d => d.text())
   
   constructor(width=0, height=0) {
-    super(width, height)
-    //tasks.push(fetch(this.templateURL).then(d => d.text()))
+    super(width, height);
   }
 
   async ready() {
