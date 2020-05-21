@@ -3,16 +3,14 @@ document.onload = function() {
 };
 
 class CustomWindow {
-  
-  templateURL = "/CustomWindow.html";
-  ready = fetch(templateURL).then(d => d.text());
+  static templateURL = "/CustomWindow.html";
+  static ready = Promise.all([fetch(this.templateURL).then(d => d.text()), super.ready]);
   
   constructor(width=0, height=0) {
     this.width = width;
     this.height = height;
     
     
-    this.ready = Promise.all(fetch(this.templateURL).then(d => d.text()));
   }
   
   minimise() {
@@ -29,6 +27,9 @@ class CustomWindow {
 }
 
 class BrowserWindow extends CustomWindow {
+  static templateURL = "/index.html";
+  static ready = Promise.all([fetch(this.templateURL).then(d => d.text()), super.ready]);
+
   constructor(width=0, height=0) {
     
   }
