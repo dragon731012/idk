@@ -3,16 +3,19 @@ document.onload = function() {
 };
 
 class CustomWindow {
+  static bla = fetch("/CustomWindow.html").then(d => d.text());
+  
   constructor(width=0, height=0) {
     this.width = width;
     this.height = height;
     
     
-    this.tasks = [fetch("/CustomWindow.html").then(d => d.text())];
+    this.tasks = [];
   }
 
-  ready() {
-    return Promise.all(this.tasks);
+  async ready() {
+    // await super.ready()
+    var template = await bla;
   }
   
   minimise() {
@@ -30,13 +33,14 @@ class CustomWindow {
 
 class BrowserWindow extends CustomWindow {
   static templateURL = "/index.html";
+  static tasks = [];
   
   //this.tasks.push();
   //static ready = Promise.all([fetch(this.templateURL).then(d => d.text()), super.ready]);
 
   constructor(width=0, height=0) {
     super(width, height)
-    super.tasks.push(fetch(this.templateURL).then(d => d.text()))
+    //tasks.push(fetch(this.templateURL).then(d => d.text()))
   }
   
   showBookmarks() {
