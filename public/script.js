@@ -30,14 +30,11 @@ class BrowserWindow extends CustomWindow {
   static template = fetch("/index.html").then(d => d.text())
   
   constructor(width=0, height=0) {
-    super(width, height).init.then(() => this.init = new Promise((res, rej) => {
-      res("browser made!")
-    }));
-  }
-
-  async ready() {
-    await super.ready();
-    return await BrowserWindow.template;
+    var parent = super(width, height);
+    this.init = (async () => {
+      console.log(await parent.init);
+      return await BrowserWindow.tmeplate;
+    })();
   }
   
   showBookmarks() {
