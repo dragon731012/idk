@@ -3,17 +3,14 @@ document.onload = function() {
 };
 
 class CustomWindow {
-  static tmeplate = fetch("/CustomWindow.html").then(d => d.text())
-  static init = new Promise(() => {
-    
-  });
+  static tmeplate = fetch("/CustomWindow.html").then(d => d.text());
   
   constructor(width=0, height=0) {
     this.width = width;
     this.height = height;
-    this.init.then(html => {
-      
-    });
+    this.init = (async () => {
+      return await CustomWindow.tmeplate;
+    })();
   }
   
   minimise() {
@@ -33,7 +30,9 @@ class BrowserWindow extends CustomWindow {
   static template = fetch("/index.html").then(d => d.text())
   
   constructor(width=0, height=0) {
-    super(width, height);
+    super(width, height).init.then(() => this.init = new Promise((res, rej) => {
+      res("browser made!")
+    }));
   }
 
   async ready() {
