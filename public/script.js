@@ -2,21 +2,18 @@ document.onload = function() {
   new BrowserWindow();
 };
 
-/*class CustomWindow {
+class CustomWindow {
   static tmeplate = fetch("/CustomWindow.html").then(d => d.text())
+  static init = new Promise(() => {
+    
+  });
   
   constructor(width=0, height=0) {
     this.width = width;
     this.height = height;
-    this.ready().then(html => {
+    this.init.then(html => {
       
     });
-  }
-
-  async ready() {
-    // await super.ready()
-    CustomWindow.template;
-    //var template = await bla;
   }
   
   minimise() {
