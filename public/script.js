@@ -2,7 +2,7 @@ document.onload = function() {
   new BrowserWindow();
 };
 
-class BrowserWindow {
+class BrowserWindow extends CustomWindow {
   constructor(width=0, height=0) {
     
   }
@@ -20,7 +20,13 @@ class BrowserWindow {
   }
 }
 
-class PopupWindow {
+class PopupWindow extends CustomWindow {
+  constructor(width=0, height=0) {
+    super(100, 100);
+  }
+}
+
+class CustomWindow {
   constructor(width=0, height=0) {
     //super(100, 100);
   }
@@ -36,8 +42,4 @@ class PopupWindow {
   close() {
     
   }
-}
-
-class CustomWindow {
-  
 }
