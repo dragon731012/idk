@@ -2,13 +2,15 @@ document.onload = function() {
   new BrowserWindow();
 };
 
-class CustomWindow {
+/*class CustomWindow {
   static tmeplate = fetch("/CustomWindow.html").then(d => d.text())
   
   constructor(width=0, height=0) {
     this.width = width;
     this.height = height;
-    this.ready()
+    this.ready().then(html => {
+      
+    });
   }
 
   async ready() {
