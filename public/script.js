@@ -28,7 +28,8 @@ class PopupWindow extends CustomWindow {
 
 class CustomWindow {
   constructor(width=0, height=0) {
-    //super(100, 100);
+    this.width = width;
+    this.height = height;
   }
   
   minimise() {
