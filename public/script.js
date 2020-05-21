@@ -1,6 +1,6 @@
-document.onload = function() {
-  new BrowserWindow();
-};
+$(function() {
+  new CustomWindow();
+});
 
 class CustomWindow {
   static tmeplate = fetch("/CustomWindow.html").then(d => d.text());
@@ -9,7 +9,7 @@ class CustomWindow {
     this.width = width;
     this.height = height;
     this.init = (async () => {
-      return await CustomWindow.tmeplate;
+      $(await CustomWindow.tmeplate).appendTo('body')
     })();
   }
   
