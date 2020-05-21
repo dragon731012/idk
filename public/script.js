@@ -3,7 +3,7 @@ document.onload = function() {
 };
 
 class CustomWindow {
-  static bla = fetch("/CustomWindow.html").then(d => d.text());
+  static tmeplate = fetch("/CustomWindow.html").then(d => d.text())
   
   constructor(width=0, height=0) {
     this.width = width;
@@ -15,7 +15,8 @@ class CustomWindow {
 
   async ready() {
     // await super.ready()
-    var template = await bla;
+    return CustomWindow.template;
+    //var template = await bla;
   }
   
   minimise() {
@@ -32,15 +33,16 @@ class CustomWindow {
 }
 
 class BrowserWindow extends CustomWindow {
-  static templateURL = "/index.html";
-  static tasks = [];
+  static template = fetch("/index.html").then(d => d.text())
   
-  //this.tasks.push();
-  //static ready = Promise.all([fetch(this.templateURL).then(d => d.text()), super.ready]);
-
   constructor(width=0, height=0) {
     super(width, height)
     //tasks.push(fetch(this.templateURL).then(d => d.text()))
+  }
+
+  async ready() {
+    await super.ready();
+    return await BrowserWindow.template;
   }
   
   showBookmarks() {
