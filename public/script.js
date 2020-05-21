@@ -1,4 +1,5 @@
 $(function() {
+  $('head').append('<link rel="stylesheet" href="/CustomWindow.css">');
   new CustomWindow();
 });
 
