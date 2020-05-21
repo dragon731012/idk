@@ -4,12 +4,17 @@ document.onload = function() {
 
 class CustomWindow {
   //static ready = fetch("/CustomWindow.html").then(d => d.text());
-  static templateURL = "/CustomWindow.html";
+  //static templateURL = "/CustomWindow.html"
+  //static ready = Promise.all(fetch(this.templateURL), super.ready)
+  static baseStaticField = 'base static field';
   
   constructor(width=0, height=0) {
     this.width = width;
     this.height = height;
-    this.loadTemplate();
+  }
+
+  ready() {
+    return baseStaticField;
   }
   
   minimise() {
