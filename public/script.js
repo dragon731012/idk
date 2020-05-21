@@ -33,7 +33,7 @@ class BrowserWindow extends CustomWindow {
     var parent = super(width, height);
     this.init = (async () => {
       console.log(await parent.init);
-      return await BrowserWindow.tmeplate;
+      return await BrowserWindow.template;
     })();
   }
   
