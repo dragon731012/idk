@@ -3,14 +3,16 @@ document.onload = function() {
 };
 
 class CustomWindow {
-  static templateURL = "/CustomWindow.html";
-  static ready = Promise.all([fetch(this.templateURL).then(d => d.text()), super.ready]);
-  
   constructor(width=0, height=0) {
     this.width = width;
     this.height = height;
     
     
+    this.tasks = [fetch("/CustomWindow.html").then(d => d.text())];
+  }
+
+  ready() {
+    return Promise.all(this.tasks);
   }
   
   minimise() {
@@ -28,10 +30,13 @@ class CustomWindow {
 
 class BrowserWindow extends CustomWindow {
   static templateURL = "/index.html";
-  static ready = Promise.all([fetch(this.templateURL).then(d => d.text()), super.ready]);
+  
+  //this.tasks.push();
+  //static ready = Promise.all([fetch(this.templateURL).then(d => d.text()), super.ready]);
 
   constructor(width=0, height=0) {
-    
+    super(width, height)
+    super.tasks.push(fetch(this.templateURL).then(d => d.text()))
   }
   
   showBookmarks() {
