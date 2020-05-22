@@ -1,0 +1,7 @@
+/* The following styles are reccomended, but not nessisary for implementing CustomWindows into your own project */
+
+body {
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}

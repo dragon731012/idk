@@ -1,3 +1,10 @@
+.CustomWindow, .CustomWindow * {
+  box-sizing: border-box;
+  border: 0;
+  user-select: none;
+  font-size: 14px;
+}
+
 .CustomWindow {
   position: absolute;
   top: 0;
