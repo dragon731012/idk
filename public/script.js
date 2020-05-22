@@ -1,6 +1,7 @@
+var myWin;
 $(function() {
   $('head').append('<link rel="stylesheet" href="/CustomWindow.css">');
-  new CustomWindow();
+  myWin = new CustomWindow();
 });
 
 class CustomWindow {
@@ -10,8 +11,9 @@ class CustomWindow {
     this.width = width;
     this.height = height;
     this.init = (async () => {
-      var win = $(await CustomWindow.tmeplate).appendTo('body');
-      win.css({width: (width ? width : '100%'), height: (height ? height : '100%')})
+      this.win = $(await CustomWindow.tmeplate).appendTo('body');
+      this.win.css({width: (width ? width : '100%'), height: (height ? height : '100%')});
+      this.name(name);
     })();
   }
   
@@ -24,7 +26,11 @@ class CustomWindow {
   }
   
   close() {
-    
+    this.win.remove()
+  }
+
+  name(newName=undefined) {
+    return win.find('.appinfo').text(newName==undefined ? undefined : );
   }
 }
 
