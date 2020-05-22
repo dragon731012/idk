@@ -13,7 +13,7 @@ class CustomWindow {
     this.init = (async () => {
       this.win = $(await CustomWindow.tmeplate).appendTo('body');
       this.win.css({width: (width ? width : '100%'), height: (height ? height : '100%')});
-      this.name = this.win.find('.appinfo').text.bind(this);
+      this.name = $().text.bind(this.win.find('.appinfo'));
       this.name(name);
     })();
   }
@@ -29,10 +29,6 @@ class CustomWindow {
   close() {
     this.win.remove()
   }
-
-  /*name(newName=undefined) {
-    return this.win.find('.appinfo').text(newName==undefined ? undefined : newName);
-  }*/
 }
 
 class BrowserWindow extends CustomWindow {
