@@ -6,7 +6,7 @@ $(function() {
 class CustomWindow {
   static tmeplate = fetch("/CustomWindow.html").then(d => d.text());
   
-  constructor(width=0, height=0, name="", icon="", groupWith="CustomWindow") {
+  constructor(width=0, height=0, {left=null, right=null, name="", icon="", groupWith="CustomWindow"} = {}) {
     this.width = width;
     this.height = height;
     this.init = (async () => {

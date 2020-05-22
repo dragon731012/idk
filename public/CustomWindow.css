@@ -4,7 +4,14 @@
   background-color: white;
 }
 
-#topbar {
+.topbar {
   display: flex;
-  background-color: var(--bg-color);
+}
+
+.topbar > div {
+  display: flex;
+}
+
+.appinfo {
+  width: 100%;
 }
