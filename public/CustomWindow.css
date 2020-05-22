@@ -3,3 +3,8 @@
   top: 0;
   background-color: white;
 }
+
+#topbar {
+  display: flex;
+  background-color: var(--bg-color);
+}

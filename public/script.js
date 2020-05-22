@@ -6,11 +6,12 @@ $(function() {
 class CustomWindow {
   static tmeplate = fetch("/CustomWindow.html").then(d => d.text());
   
-  constructor(width=0, height=0) {
+  constructor(width=0, height=0, name="", icon="", groupWith="CustomWindow") {
     this.width = width;
     this.height = height;
     this.init = (async () => {
-      $(await CustomWindow.tmeplate).appendTo('body')
+      var win = $(await CustomWindow.tmeplate).appendTo('body');
+      win.css({width: (width ? width : '100%'), height: (height ? height : '100%')})
     })();
   }
   

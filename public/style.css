@@ -50,7 +50,6 @@ button:hover {
 /* Styles for topbar */
 
 #topbar {
-  display: flex;
   background-color: var(--bg-color);
 }
 
