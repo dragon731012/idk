@@ -14,8 +14,8 @@ class CustomWindow {
       this.win = $(await CustomWindow.tmeplate).appendTo('body');
       this.width = width;
       this.height = height;
-      this.toggleSize()
-      this.name = $().text.bind(this.win.find('.appinfo'));
+      this.toggleSize();
+      this.name = $().text.bind(this.win.find('.appinfo').on('pointerdown', this.dragMouseDown));
       this.name(name);
     })();
   }
@@ -30,6 +30,10 @@ class CustomWindow {
   
   close() {
     this.win.remove()
+  }
+
+  dragMouseDown(x, y) {
+    
   }
 }
 
