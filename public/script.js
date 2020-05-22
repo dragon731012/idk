@@ -39,9 +39,9 @@ class BrowserWindow extends CustomWindow {
   
   constructor(width=0, height=0) {
     var parent = super(width, height);
-    if (!stylesheet) stylesheet = $('head').append('<link rel="stylesheet" href="/BrowserWindow.css">');
+    if (!BrowserWindow.stylesheet) BrowserWindow.stylesheet = !!$('head').append('<link rel="stylesheet" href="/BrowserWindow.css">');
     this.init = (async () => {
-      console.log(await parent.init);
+      await parent.init;
       return await BrowserWindow.template;
     })();
   }
