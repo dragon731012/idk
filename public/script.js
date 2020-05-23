@@ -19,7 +19,9 @@ class CustomWindow {
       this.makeDragable(this.win[0], appinfo[0]);
       this.name = $().text.bind(appinfo);
       this.name(name);
-      //return this.win;
+      
+      // Register functionalities
+      this.win.find('button[title="Close"]').click(this.close.bind(this));
     })();
   }
   
