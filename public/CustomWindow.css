@@ -1,3 +1,13 @@
+@keyframes fadeout {
+  /*from {background-color: red;}*/
+  to {background-color: transparent;}
+}
+
+@keyframes fadein {
+  /*from {background-color: red;}*/
+  to {background-color: var(--button-fade);}
+}
+
 .CustomWindow, .CustomWindow * {
   box-sizing: border-box;
   border: 0;
@@ -10,6 +20,8 @@
   top: 0;
   background-color: white;
   border: 1px solid black;
+  
+  --button-fade: rgba(127, 127, 127, 0.2);
 }
 
 .topbar {
@@ -22,4 +34,23 @@
 
 .appinfo {
   width: 100%;
+}
+
+/* Control Buttons */
+
+button {
+  animation-fill-mode: both;
+  cursor: pointer;
+  animation-name: fadeout;
+  animation-duration: 500ms;
+}
+
+button:hover {
+  animation-name: fadein;
+  animation-duration: 500ms;
+}
+
+button[title="Close"]:hover {
+  --button-fade: rgb(232, 17, 35);
+  color: white
 }
