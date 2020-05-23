@@ -8,13 +8,13 @@ app.use(function(req, res, next) {
   var url = req.url.split('.');
   var filename = req.url.split('/');
   console.log(url[url.length-1]);
-  if (url[url.length-1] == 'css')
+  if (url[url.length-1] == 'css') {
     res.send(sass.renderSync({
-      file: __dirname + '/public/' + filename[filename.length-1].replace('css', 'sass')
-    }));
-  else
+      file: __dirname + '/public/' + filename[filename.length-1].replace('css', 'scss')
+    }).css); next();
+  } else
     express.static("public")(req, res, next);
-  next();
+  //next();
 });
 
 // https://expressjs.com/en/starter/basic-routing.html

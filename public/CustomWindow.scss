@@ -1,10 +1,8 @@
 @keyframes fadeout {
-  /*from {background-color: red;}*/
   to {background-color: transparent;}
 }
 
 @keyframes fadein {
-  /*from {background-color: red;}*/
   to {background-color: var(--button-fade);}
 }
 
@@ -52,5 +50,5 @@ button:hover {
 
 button[title="Close"]:hover {
   --button-fade: rgb(232, 17, 35);
-  color: white
+  color: white;
 }
