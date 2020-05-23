@@ -92,7 +92,7 @@ class BrowserWindow extends CustomWindow {
       this.win.addClass('BrowserWindow');
       
       // Register functionalities
-      this.win.find('.searchbox').on('change', function() {alert()})
+      this.win.find('.searchbox').on('keydown', function(ev) {if(ev.key === 'Enter') console.log(ev.target.value); });
     })();
   }
   
