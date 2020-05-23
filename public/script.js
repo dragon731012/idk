@@ -4,7 +4,37 @@ $(function() {
   myWin = new CustomWindow();
 });
 
-function makeDragable(elmnt, handle=undefined) {
+class CustomWindow {
+  static tmeplate = fetch("/CustomWindow.html").then(d => d.text());
+  
+  constructor(width=0, height=0, {left=null, right=null, name="", icon="", groupWith="CustomWindow"} = {}) {
+    this.width = width;
+    this.height = height;
+    this.init = (async () => {
+      this.win = $(await CustomWindow.tmeplate).appendTo('body');
+      this.width = width;
+      this.height = height;
+      this.toggleSize();
+      var appinfo = this.win.find('.appinfo');
+      this.makeDragable(this.win[0], appinfo[0]);
+      this.name = $().text.bind(appinfo);
+      this.name(name);
+    })();
+  }
+  
+  minimise() {
+    
+  }
+  
+  toggleSize() {
+    this.win.css({width: (this.width ? this.width : '100%'), height: (this.height ? this.height : '100%')});
+  }
+  
+  close() {
+    this.win.remove()
+  }
+
+  makeDragable(elmnt, handle=undefined) {
   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
   if (handle != undefined) {
     // if present, the header is where you move the DIV from:
@@ -44,40 +74,6 @@ function makeDragable(elmnt, handle=undefined) {
     document.onmousemove = null;
   }
 }
-
-class CustomWindow {
-  static tmeplate = fetch("/CustomWindow.html").then(d => d.text());
-  
-  constructor(width=0, height=0, {left=null, right=null, name="", icon="", groupWith="CustomWindow"} = {}) {
-    this.width = width;
-    this.height = height;
-    this.init = (async () => {
-      this.win = $(await CustomWindow.tmeplate).appendTo('body');
-      this.width = width;
-      this.height = height;
-      this.toggleSize();
-      var appinfo = this.win.find('.appinfo');
-      makeDragable(this.win[0], appinfo[0]);
-      this.name = $().text.bind(appinfo);
-      this.name(name);
-    })();
-  }
-  
-  minimise() {
-    
-  }
-  
-  toggleSize() {
-    this.win.css({width: (this.width ? this.width : '100%'), height: (this.height ? this.height : '100%')});
-  }
-  
-  close() {
-    this.win.remove()
-  }
-
-  dragMouseDown(x, y) {
-    
-  }
 }
 
 class BrowserWindow extends CustomWindow {
@@ -89,7 +85,7 @@ class BrowserWindow extends CustomWindow {
     if (!BrowserWindow.stylesheet) BrowserWindow.stylesheet = !!$('head').append('<link rel="stylesheet" href="/BrowserWindow.css">');
     this.init = (async () => {
       await parent.init;
-      return await BrowserWindow.template;
+      this.win = $(await BrowserWindow.tmeplate).appendTo('body');
     })();
   }
   
