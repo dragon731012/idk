@@ -90,6 +90,9 @@ class BrowserWindow extends CustomWindow {
       await parent.init;
       $(await BrowserWindow.template).appendTo(this.win);
       this.win.addClass('BrowserWindow');
+      
+      // Register functionalities
+      this.win.find('.searchbox').on('change', function() {alert()})
     })();
   }
   
