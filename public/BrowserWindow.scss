@@ -3,77 +3,75 @@
   --bg-color: rgb(233, 233, 233);
 }
 
-body {
-  height: 100vh;
+.BrowserWindow {
   font-family: sans-serif;
-}
 
-iframe {
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
+  iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
 
-button {
-  border-radius: 999px;
-}
+  button {
+    border-radius: 999px;
+  }
 
-/* Styles for topbar */
+  /* Styles for topbar */
 
-#topbar {
-  display: flex;
-  background-color: var(--bg-color);
-}
+  .topbar {
+    background-color: var(--bg-color);
+  }
 
-#control > button {
-  border-radius: 0;
-}
+  .control > button {
+    border-radius: 0;
+  }
 
-#topbar > div {
-  display: flex;
-}
+  .topbar > div {
+    display: flex;
+  }
 
-#tabs {
-  width: 100%;
-}
+  .tabs {
+    width: 100%;
+  }
 
-#selected {
-  background-color: var(--focus-color);
-  border: 0;
-}
+  .selected {
+    background-color: var(--focus-color);
+    border: 0;
+  }
 
-.tab {
-  border-right: 1px solid gray;
-  flex-grow: 1;
-  max-width: 200px;
-  padding: 5px;
-  overflow: hidden;
-}
+  .tab {
+    border-right: 1px solid gray;
+    flex-grow: 1;
+    max-width: 200px;
+    padding: 5px;
+    overflow: hidden;
+  }
 
-/* Styles for Searchbar */
+  /* Styles for Searchbar */
 
-#searchbar {
-  display: flex;
-  padding: 5px;
-  background-color: var(--focus-color);
-}
+  .searchbar {
+    display: flex;
+    padding: 5px;
+    background-color: var(--focus-color);
+  }
 
-#searchbox {
-  flex-grow: 1;
-  border-radius: 200px;
-  padding: 5px 5px 5px 10px;
-  background-color: rgb(225, 225, 226);
-}
+  .searchbox {
+    flex-grow: 1;
+    border-radius: 200px;
+    padding: 5px 5px 5px 10px;
+    background-color: rgb(225, 225, 226);
+  }
 
-/* Styles for Bookmarks */
+  /* Styles for Bookmarks */
 
-#bookmarks {
-  border-bottom: 1px solid var(--bg-color);
-  padding: 5px;
-  padding-top: 0;
-  background-color: var(--focus-color);
-}
+  .bookmarks {
+    border-bottom: 1px solid var(--bg-color);
+    padding: 5px;
+    padding-top: 0;
+    background-color: var(--focus-color);
+  }
 
-.bookmark {
-  padding: 5px;
+  .bookmark {
+    padding: 5px;
+  }
 }

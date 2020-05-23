@@ -1,7 +1,7 @@
 var myWin;
 $(function() {
   $('head').append('<link rel="stylesheet" href="/CustomWindow.scss">');
-  myWin = new CustomWindow();
+  myWin = new BrowserWindow();
 });
 
 class CustomWindow {
@@ -83,10 +83,11 @@ class BrowserWindow extends CustomWindow {
   
   constructor(width=0, height=0) {
     var parent = super(width, height);
-    if (!BrowserWindow.stylesheet) BrowserWindow.stylesheet = !!$('head').append('<link rel="stylesheet" href="/BrowserWindow.css">');
+    if (!BrowserWindow.stylesheet) BrowserWindow.stylesheet = !!$('head').append('<link rel="stylesheet" href="/BrowserWindow.scss">');
     this.init = (async () => {
       await parent.init;
-      this.win = $(await BrowserWindow.tmeplate).appendTo(this.win);
+      //$(await BrowserWindow.tmeplate).appendTo(this.win);
+      this.win.addClass('BrowserWindow');
     })();
   }
   
