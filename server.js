@@ -4,17 +4,16 @@ const app = express();
 
 // make all the files in 'public' available
 // https://expressjs.com/en/starter/static-files.html
-app.use(function(req, res, next) {
+app.get('/*', function(req, res, next) {
   var url = req.url.split('.');
   var filename = req.url.split('/');
   console.log(url[url.length-1]);
   if (url[url.length-1] == 'css') {
     res.send(sass.renderSync({
       file: __dirname + '/public/' + filename[filename.length-1].replace('css', 'scss')
-    }).css); next();
+    }).css);
   } else
     express.static("public")(req, res, next);
-  //next();
 });
 
 // https://expressjs.com/en/starter/basic-routing.html

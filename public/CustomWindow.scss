@@ -6,49 +6,48 @@
   to {background-color: var(--button-fade);}
 }
 
-.CustomWindow, .CustomWindow * {
-  box-sizing: border-box;
-  border: 0;
-  user-select: none;
-  font-size: 14px;
-}
-
 .CustomWindow {
   position: absolute;
   top: 0;
   background-color: white;
   border: 1px solid black;
-  
   --button-fade: rgba(127, 127, 127, 0.2);
-}
+  
+  * {
+    box-sizing: border-box;
+    border: 0;
+    user-select: none;
+    font-size: 14px;
+  }
 
-.topbar {
-  display: flex;
-}
+  .topbar {
+    display: flex;
+  }
 
-.topbar > div {
-  display: flex;
-}
+  .topbar > div {
+    display: flex;
+  }
 
-.appinfo {
-  width: 100%;
-}
+  .appinfo {
+    width: 100%;
+  }
 
-/* Control Buttons */
+  /* Control Buttons */
 
-button {
-  animation-fill-mode: both;
-  cursor: pointer;
-  animation-name: fadeout;
-  animation-duration: 500ms;
-}
+  button {
+    animation-fill-mode: both;
+    cursor: pointer;
+    animation-name: fadeout;
+    animation-duration: 500ms;
+  }
 
-button:hover {
-  animation-name: fadein;
-  animation-duration: 500ms;
-}
+  button:hover {
+    animation-name: fadein;
+    animation-duration: 500ms;
+  }
 
-button[title="Close"]:hover {
-  --button-fade: rgb(232, 17, 35);
-  color: white;
+  button[title="Close"]:hover {
+    --button-fade: rgb(232, 17, 35);
+    color: white;
+  }
 }
