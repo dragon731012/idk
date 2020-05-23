@@ -5,13 +5,13 @@ $(function() {
 });
 
 class CustomWindow {
-  static tmeplate = fetch("/CustomWindow.html").then(d => d.text());
+  static template = fetch("/CustomWindow.html").then(d => d.text());
   
   constructor(width=0, height=0, {left=null, right=null, name="", icon="", groupWith="CustomWindow"} = {}) {
     this.width = width;
     this.height = height;
     this.init = (async () => {
-      this.win = $(await CustomWindow.tmeplate).appendTo('body');
+      this.win = $(await CustomWindow.template).appendTo('body');
       this.width = width;
       this.height = height;
       this.toggleSize();
@@ -86,7 +86,7 @@ class BrowserWindow extends CustomWindow {
     if (!BrowserWindow.stylesheet) BrowserWindow.stylesheet = !!$('head').append('<link rel="stylesheet" href="/BrowserWindow.scss">');
     this.init = (async () => {
       await parent.init;
-      //$(await BrowserWindow.tmeplate).appendTo(this.win);
+      $(await BrowserWindow.template).appendTo(this.win);
       this.win.addClass('BrowserWindow');
     })();
   }
