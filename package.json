@@ -2,23 +2,22 @@
   "//1": "describes your app and its dependencies",
   "//2": "https://docs.npmjs.com/files/package.json",
   "//3": "updating this file will download and update your packages",
-  "name": "hello-express",
+  "name": "virtual-browser",
   "version": "0.0.1",
-  "description": "A simple Node app built on Express, instantly up and running.",
+  "description": "Emulate a browser within your browser! (basically a proxy).",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
   "dependencies": {
     "express": "^4.17.1",
-    "http-proxy": "^1.18.1",
-    "http-proxy-middleware": "^1.0.3"
+    "node-sass": "^4.14.1"
   },
   "engines": {
     "node": "12.x"
   },
   "repository": {
-    "url": "https://glitch.com/edit/#!/hello-express"
+    "url": "https://glitch.com/edit/#!/virtual-browser"
   },
   "license": "MIT",
   "keywords": [
