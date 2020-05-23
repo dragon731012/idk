@@ -9,9 +9,10 @@ app.get('/*', function(req, res, next) {
   var filename = req.url.split('/');
   console.log(url[url.length-1]);
   if (url[url.length-1] == 'css') {
-    res.send(sass.renderSync({
-      file: __dirname + '/public/' + filename[filename.length-1].replace('css', 'scss')
-    }).css);
+    sass.render({
+      file: __dirname + '/public/' + filename[filename.length-1].replace('css', 'scss'),
+      indentWidth: 0
+    }, function(err, data) { res.send(data.css) });
   } else
     express.static("public")(req, res, next);
 });
