@@ -19,6 +19,7 @@ class CustomWindow {
       this.makeDragable(this.win[0], appinfo[0]);
       this.name = $().text.bind(appinfo);
       this.name(name);
+      //return this.win;
     })();
   }
   
@@ -77,7 +78,7 @@ class CustomWindow {
 }
 
 class BrowserWindow extends CustomWindow {
-  static template = fetch("/index.html").then(d => d.text())
+  static template = fetch("/BrowserWindow.html").then(d => d.text())
   static stylesheet;
   
   constructor(width=0, height=0) {
@@ -85,7 +86,7 @@ class BrowserWindow extends CustomWindow {
     if (!BrowserWindow.stylesheet) BrowserWindow.stylesheet = !!$('head').append('<link rel="stylesheet" href="/BrowserWindow.css">');
     this.init = (async () => {
       await parent.init;
-      this.win = $(await BrowserWindow.tmeplate).appendTo('body');
+      this.win = $(await BrowserWindow.tmeplate).appendTo(this.win);
     })();
   }
   
