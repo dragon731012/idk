@@ -8,12 +8,12 @@ app.get('/*', function(req, res, next) {
   var url = req.url.split('.');
   var filename = req.url.split('/');
   console.log(url[url.length-1]);
-  if (url[url.length-1] == 'scss') {
-    res.set('Content-Type', 'text/css')
+  if (url[url.length-1] == 'scss') {    
     res.send(sass.renderSync({
       file: __dirname + '/public/' + filename[filename.length-1],
       indentWidth: 0
-    }).css.toString());
+    }).css);
+    res.contentType("text/css");
   } else
     express.static("public")(req, res, next);
 });
