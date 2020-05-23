@@ -6,15 +6,15 @@ const app = express();
 app.use(function(req, res, next) {
   var url = req.url.split('.');
   console.log(url[url.length-1])
-  express.static("public");
+  express.static("public")(req, res, next);
   next();
 });
 
-// https://expressjs.com/en/starter/basic-routing.html
+/* https://expressjs.com/en/starter/basic-routing.html
 app.get("/", (request, response) => {
   //response.redirect('/index.html');
   response.sendFile(__dirname + "/views/index.html");
-});
+});*/
 
 
 const listener = app.listen(process.env.PORT, () => {
