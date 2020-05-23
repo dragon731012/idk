@@ -1,6 +1,6 @@
 var myWin;
 $(function() {
-  $('head').append('<link rel="stylesheet" href="/CustomWindow.css">');
+  $('head').append('<link rel="stylesheet" href="/CustomWindow.scss">');
   myWin = new CustomWindow();
 });
 
