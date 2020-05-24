@@ -7,7 +7,7 @@ $(function() {
 class CustomWindow {
   static template = fetch("/CustomWindow.html").then(d => d.text());
   
-  constructor(width=0, height=0, {left=null, right=null, name="", icon="", groupWith="CustomWindow"} = {}) {
+  constructor(width=0, height=0, {left=0, top=0, name="", icon="", groupWith="CustomWindow"} = {}) {
     this.width = width;
     this.height = height;
     this.init = (async () => {
@@ -15,6 +15,8 @@ class CustomWindow {
       this.fullscreen = width && height;
       this.width = width ? width : 500;
       this.height = height ? height : 500;
+      // TODO: automaticly determine proper position based on screen & window size
+      this.left = left; this.top = top;
       this.toggleSize();
       var appinfo = this.win.find('.appinfo');
       this.makeDragable(this.win[0], appinfo[0]);
@@ -33,10 +35,12 @@ class CustomWindow {
   
   toggleSize() {
     this.fullscreen = !this.fullscreen;
-    this.win.css({width: (this.fullscreen ? '100%' : this.width), height: (this.fullscreen ? '100%' : this.height)});
-    if (this.fullscreen) {
-      
-    }
+    this.win.css({
+      width: (this.fullscreen ? '100%' : this.width),
+      height: (this.fullscreen ? '100%' : this.height),
+      left: (this.fullscreen ? '0' : this.left),
+      top: (this.fullscreen ? '0' : this.top),
+    });
   }
   
   close() {
@@ -72,6 +76,7 @@ class CustomWindow {
       pos2 = pos4 - e.clientY;
       pos3 = e.clientX;
       pos4 = e.clientY;
+      console.debug("DRAGGING:", pos1, pos2, pos3, pos4)
       // set the element's new position:
       elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
       elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
