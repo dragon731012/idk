@@ -111,7 +111,7 @@ class BrowserWindow extends CustomWindow {
       await parent.init;
       $(await BrowserWindow.template).appendTo(this.win);
       this.win.addClass('BrowserWindow');
-      for (var i=0; i<20; i++) new this.#Tab(this);
+      for (var i=0; i<20; i++) this.newTab();
       //this.tabs = [new this.#Tab(this)];
       
       // Register functionalities
@@ -127,17 +127,26 @@ class BrowserWindow extends CustomWindow {
     
   }
   
-  newTab() {
+  newTab(url="about:blank") {
+    var appinfo = this.win.find('.appinfo');
+    var tab = appinfo.append(`<div class="tab selected">Tab<button class="closeTab fas fa-times"></button></div>`);
+    focus.call(this, {target: tab});
+    tab.click(focus.bind(this));
     
-  }
-
-  #Tab = class Tab {
-    constructor(parent, url="https://www.google.com") {
-      var appinfo = parent.win.find('.appinfo');
-      var tab = appinfo.append(`<div class="tab selected">Tab<button class="closeTab fas fa-times"></button></div>`);
-      
+    function focus(e) {
+      var $target = $(e.target);
+      console.log(e.target);
+      this.win.find('.selected').removeClass('selected');
+      $target.addClass('selected')
     }
   }
+
+  /*#Tab = class Tab {
+    constructor(parent, url="https://www.google.com") {
+      
+      
+    }
+  }*/
 }
 
 class PopupWindow extends CustomWindow {
