@@ -76,12 +76,15 @@ class CustomWindow {
       pos2 = pos4 - e.clientY;
       pos3 = e.clientX;
       pos4 = e.clientY;
+      this.left -= pos1; this.top -= pos2;
       console.debug("DRAGGING:", pos1, pos2, pos3, pos4)
       // set the element's new position:
       elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
       elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
       
       if (this.fullscreen) this.toggleSize();
+      else if (pos3 <= 0) { this.toggleSize(); this.win.css('width', '50%'); closeDragElement() }
+      else if (pos4 <= 0) { this.toggleSize(); closeDragElement() }
     }
 
     function closeDragElement() {
