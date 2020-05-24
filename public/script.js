@@ -111,7 +111,8 @@ class BrowserWindow extends CustomWindow {
       await parent.init;
       $(await BrowserWindow.template).appendTo(this.win);
       this.win.addClass('BrowserWindow');
-      this.tabs = [new this.#Tab(this)];
+      for (var i=0; i<20; i++) new this.#Tab(this);
+      //this.tabs = [new this.#Tab(this)];
       
       // Register functionalities
       this.win.find('.searchbox').on('keydown', function(ev) {if(ev.key === 'Enter') console.log(ev.target.value); });
@@ -132,8 +133,8 @@ class BrowserWindow extends CustomWindow {
 
   #Tab = class Tab {
     constructor(parent, url="https://www.google.com") {
-      var appinfo = this.win.find('.appinfo');
-      var tab = appinfo.appdend(`<div class="selected" class="tab">Tab<button class="closeTab" class="fas fa-times"></button></div>`);
+      var appinfo = parent.win.find('.appinfo');
+      var tab = appinfo.append(`<div class="tab selected">Tab<button class="closeTab fas fa-times"></button></div>`);
       
     }
   }
