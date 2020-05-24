@@ -47,6 +47,11 @@ class CustomWindow {
     this.win.remove()
   }
 
+  topbarVisible(visible) {
+    if (visible) this.win.find('.topbar').show();
+    else this.win.find('.topbar').hide();
+  }
+
   makeDragable(elmnt, handle=undefined) {
     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
     if (handle != undefined) {
@@ -106,6 +111,7 @@ class BrowserWindow extends CustomWindow {
       await parent.init;
       $(await BrowserWindow.template).appendTo(this.win);
       this.win.addClass('BrowserWindow');
+      this.tabs = [new this.#Tab(this)];
       
       // Register functionalities
       this.win.find('.searchbox').on('keydown', function(ev) {if(ev.key === 'Enter') console.log(ev.target.value); });
@@ -124,10 +130,10 @@ class BrowserWindow extends CustomWindow {
     
   }
 
-  topbarVisible
-
-  class Tab {
+  #Tab = class Tab {
     constructor(parent, url="https://www.google.com") {
+      var appinfo = this.win.find('.appinfo');
+      var tab = appinfo.appdend(`<div class="selected" class="tab">Tab<button class="closeTab" class="fas fa-times"></button></div>`);
       
     }
   }
