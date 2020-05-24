@@ -123,6 +123,14 @@ class BrowserWindow extends CustomWindow {
   newTab() {
     
   }
+
+  topbarVisible
+
+  class Tab {
+    constructor(parent, url="https://www.google.com") {
+      
+    }
+  }
 }
 
 class PopupWindow extends CustomWindow {
