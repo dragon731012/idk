@@ -23,6 +23,7 @@ class CustomWindow {
       
       // Register functionalities
       this.win.find('button[title="Close"]').click(this.close.bind(this));
+      this.win.find('.fa-window-restore').click(this.toggleSize.bind(this));
     })();
   }
   
@@ -33,6 +34,9 @@ class CustomWindow {
   toggleSize() {
     this.fullscreen = !this.fullscreen;
     this.win.css({width: (this.fullscreen ? '100%' : this.width), height: (this.fullscreen ? '100%' : this.height)});
+    if (this.fullscreen) {
+      
+    }
   }
   
   close() {
