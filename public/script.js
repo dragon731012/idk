@@ -12,8 +12,9 @@ class CustomWindow {
     this.height = height;
     this.init = (async () => {
       this.win = $(await CustomWindow.template).appendTo('body');
-      this.width = width;
-      this.height = height;
+      this.fullscreen = width && height;
+      this.width = width ? width : 100;
+      this.height = height ? height : 100;
       this.toggleSize();
       var appinfo = this.win.find('.appinfo');
       this.makeDragable(this.win[0], appinfo[0]);
@@ -30,7 +31,8 @@ class CustomWindow {
   }
   
   toggleSize() {
-    this.win.css({width: (this.width ? this.width : '100%'), height: (this.height ? this.height : '100%')});
+    this.fullscreen = !this.fullscreen;
+    this.win.css({width: (this.fullscreen ? '100%' : this.width), height: (this.fullscreen ? '100%' : this.height)});
   }
   
   close() {
@@ -61,6 +63,7 @@ class CustomWindow {
   function elementDrag(e) {
     e = e || window.event;
     e.preventDefault();
+    console.log(this)
     // calculate the new cursor position:
     pos1 = pos3 - e.clientX;
     pos2 = pos4 - e.clientY;
