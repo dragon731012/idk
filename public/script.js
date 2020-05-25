@@ -44,7 +44,8 @@ class CustomWindow {
   }
   
   close() {
-    this.win.css('animation-direction', 'normal');
+    this.win.css('animation-name', 'null')
+    this.win.css({animationDirection: 'normal', animationName: 'fadeout'});
     //window.setTimeout(this.win.remove.bind(this));
   }
 
