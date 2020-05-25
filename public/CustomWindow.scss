@@ -5,14 +5,21 @@
   }
 }
 
+@keyframes fadein {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
 .CustomWindow {
   position: absolute;
   background-color: white;
   border: 1px solid black;
-  animation-direction: reverse;
-  animation-fill-mode: backwards;
+  //animation-direction: reverse;
+  animation-fill-mode: both;
   animation-duration: 300ms;
-  animation-name: fadeout;
+  animation-name: fadein;
   --button-fade: rgba(127, 127, 127, 0.2);
   
   * {
