@@ -115,7 +115,7 @@ class BrowserWindow extends CustomWindow {
       //this.tabs = [new this.#Tab(this)];
       
       // Register functionalities
-      this.win.find('.searchbox').on('keydown', function(ev) {if(ev.key === 'Enter') console.log(ev.target.value); });
+      this.win.find('.searchbox').on('keydown', function(ev) { if(ev.key === 'Enter') console.log(ev.target.value); });
     })();
   }
   
@@ -126,7 +126,12 @@ class BrowserWindow extends CustomWindow {
   restoreTabs() {
     
   }
+
+  navigateTo(url) {
+    this.win.find('iframe:visible')[0].src = url
+  }
   
+  // TODO: make Tab class?
   newTab(url="about:blank") {
     var appinfo = this.win.find('.appinfo');
     var tab = $(`<div class="tab selected">Tab<button class="closeTab fas fa-times"></button></div>`).appendTo(appinfo);
@@ -143,6 +148,10 @@ class BrowserWindow extends CustomWindow {
       
       this.win.find('iframe').hide();
       iframe.show();
+    }
+    
+    function close() {
+      iframe.destroy();
     }
   }
 
