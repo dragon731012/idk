@@ -14,9 +14,9 @@
 
 .CustomWindow {
   position: absolute;
+  font-family: sans-serif;
   background-color: white;
   border: 1px solid black;
-  //animation-direction: reverse;
   animation-fill-mode: both;
   animation-duration: 300ms;
   animation-name: fadein;

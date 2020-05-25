@@ -178,7 +178,10 @@ class BrowserWindow extends CustomWindow {
 }
 
 class PopupWindow extends CustomWindow {
-  constructor(width=0, height=0) {
-    super(100, 100);
+  constructor(url="about:blank", width=300, height=300) {
+    super(width, height).init.then(() => {
+      this.name("Popup Window");
+      this.win.append(`<div style="background-color: var(--bg-color);">${url}</div><iframe src="${url}"></iframe>`)
+    });
   }
 }
