@@ -116,9 +116,18 @@ class BrowserWindow extends CustomWindow {
       //this.tabs = [new this.#Tab(this)];
       
       // Register functionalities
-      this.win.find('.searchbox').on('keydown', function(ev) { if(ev.key === 'Enter') console.log(ev.target.value); });
+      this.win.find('.searchbox').on('keydown', (ev) => {
+        console.log(this);
+        if (ev.key === 'Enter')
+          navigateTo('https://proxy.funblaster22.repl.co/?url=' +
+                     ((BrowserWindow.isURL(ev.target.value)) ? '' : 'google.com/search?q=') + ev.target.value);
+      });
       this.win.find('.fa-star').click(this.addBookmark.bind(this));
     })();
+  }
+
+  static isURL(str) {
+    return !!str.match(/^(https?:\/\/)|^(\w+\.)+(com|net|co|gov|org|gg|me|info)/i);
   }
 
   addBookmark() {
