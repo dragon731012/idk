@@ -147,6 +147,7 @@ class BrowserWindow extends CustomWindow {
     tab.click(focus.bind(this));
     tab.find('button').click(close.bind(this));
     tab.click();
+    tab.animate({maxWidth: 200});
     
     function focus(e) {
       e.stopPropagation();
@@ -164,7 +165,7 @@ class BrowserWindow extends CustomWindow {
         try { (tab[0].nextElementSibling || tab[0].previousElementSibling).click() }
         catch (err) { this.close() }
       }
-      tab.remove();
+      tab.animate({maxWidth: 0}, 200, tab.remove.bind(tab));
       iframe.remove();
     }
   }

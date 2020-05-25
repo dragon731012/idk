@@ -3,12 +3,6 @@
   --bg-color: rgb(233, 233, 233);
 }
 
-@keyframes unsquish {
-  from {
-    max-width: 10px;
-  }
-}
-
 .BrowserWindow {
 
   iframe {
@@ -39,9 +33,10 @@
   .tab {
     border-right: 1px solid gray;
     flex-grow: 1;
-    max-width: 200px;
+    max-width: 10px;
     padding: 5px;
     overflow: hidden;
+    white-space: nowrap;
   }
 
   /* Styles for Searchbar */
