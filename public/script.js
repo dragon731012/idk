@@ -137,6 +137,7 @@ class BrowserWindow extends CustomWindow {
     var tab = $(`<div class="tab selected">Tab<button class="closeTab fas fa-times"></button></div>`).appendTo(appinfo);
     var iframe = $(`<iframe src=${url}></iframe>`).appendTo(this.win);
     tab.click(focus.bind(this));
+    tab.find('button').click(close.bind(this));
     tab.click();
     
     function focus(e) {
@@ -151,9 +152,10 @@ class BrowserWindow extends CustomWindow {
     }
     
     function close(e) {
-      try { e.target.nextElementSibling.click() }
-      except e {  }
-      iframe.destroy();
+      try { (tab[0].nextElementSibling || tab[0].previousElementSibling).click() }
+      catch (err) { this.close() }
+      tab.remove();
+      iframe.remove();
     }
   }
 
