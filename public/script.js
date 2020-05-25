@@ -165,7 +165,7 @@ class BrowserWindow extends CustomWindow {
         try { (tab[0].nextElementSibling || tab[0].previousElementSibling).click() }
         catch (err) { this.close() }
       }
-      tab.animate({maxWidth: 0}, 200, tab.remove.bind(tab));
+      tab.animate({maxWidth: 0, paddingRight: 0}, 200, tab.remove.bind(tab));
       iframe.remove();
     }
   }
