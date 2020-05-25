@@ -111,17 +111,19 @@ class BrowserWindow extends CustomWindow {
       await parent.init;
       $(await BrowserWindow.template).appendTo(this.win);
       this.win.addClass('BrowserWindow');
-      for (var i=0; i<3; i++) this.newTab("https://www.wikipedia.org");
+      for (var i=0; i<3; i++) this.newTab("https://virtual-browser.glitch.me/");
       //this.tabs = [new this.#Tab(this)];
       
       // Register functionalities
       this.win.find('.searchbox').on('keydown', function(ev) { if(ev.key === 'Enter') console.log(ev.target.value); });
-      this.win.find('fa-star').click(addBookmark.bind(this));
+      this.win.find('.fa-star').click(this.addBookmark.bind(this));
     })();
   }
 
   addBookmark() {
-    this.win.find('iframe:visible')[0].src
+    var bookmark = $(`<button>${"Bookmark"}</button>`).appendTo('.bookmarks');
+    var goto = this.win.find('iframe:visible')[0].src;
+    bookmark.click(this.navigateTo.bind(this, goto));
   }
   
   showBookmarks() {

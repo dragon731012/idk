@@ -58,12 +58,11 @@
 
   .bookmarks {
     border-bottom: 1px solid var(--bg-color);
-    padding: 5px;
-    padding-top: 0;
     background-color: var(--focus-color);
-  }
-
-  .bookmark {
-    padding: 5px;
+    
+    button {
+      padding: 5px;
+      margin: 5px;
+    }
   }
 }
