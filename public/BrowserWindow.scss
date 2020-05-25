@@ -3,6 +3,12 @@
   --bg-color: rgb(233, 233, 233);
 }
 
+@keyframes unsquish {
+  from {
+    max-width: 10px;
+  }
+}
+
 .BrowserWindow {
 
   iframe {
