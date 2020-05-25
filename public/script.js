@@ -128,7 +128,7 @@ class BrowserWindow extends CustomWindow {
   }
 
   static isURL(str) {
-    return !!str.match(/^(https?:\/\/)|^(\w+\.)+(com|net|co|gov|org|gg|me|info)/i);
+    return !!str.match(/^(https?:\/\/)|^(\w+\.)+(com|net|co|gov|org|gg|me|info|io)/i);
   }
 
   addBookmark() {
