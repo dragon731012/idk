@@ -116,7 +116,12 @@ class BrowserWindow extends CustomWindow {
       
       // Register functionalities
       this.win.find('.searchbox').on('keydown', function(ev) { if(ev.key === 'Enter') console.log(ev.target.value); });
+      this.win.find('fa-star').click(addBookmark.bind(this));
     })();
+  }
+
+  addBookmark() {
+    this.win.find('iframe:visible')[0].src
   }
   
   showBookmarks() {
@@ -152,8 +157,10 @@ class BrowserWindow extends CustomWindow {
     }
     
     function close(e) {
-      try { (tab[0].nextElementSibling || tab[0].previousElementSibling).click() }
-      catch (err) { this.close() }
+      if (tab.hasClass('selected')) {
+        try { (tab[0].nextElementSibling || tab[0].previousElementSibling).click() }
+        catch (err) { this.close() }
+      }
       tab.remove();
       iframe.remove();
     }
