@@ -150,7 +150,9 @@ class BrowserWindow extends CustomWindow {
       iframe.show();
     }
     
-    function close() {
+    function close(e) {
+      try { e.target.nextElementSibling.click() }
+      except e {  }
       iframe.destroy();
     }
   }
