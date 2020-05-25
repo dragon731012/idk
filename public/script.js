@@ -111,7 +111,7 @@ class BrowserWindow extends CustomWindow {
       await parent.init;
       $(await BrowserWindow.template).appendTo(this.win);
       this.win.addClass('BrowserWindow');
-      for (var i=0; i<3; i++) this.newTab("https://virtual-browser.glitch.me/");
+      for (var i=0; i<3; i++) this.newTab("https://www.wikipedia.org");
       //this.tabs = [new this.#Tab(this)];
       
       // Register functionalities
