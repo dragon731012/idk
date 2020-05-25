@@ -1,9 +1,7 @@
 @keyframes fadeout {
-  to {background-color: transparent;}
-}
-
-@keyframes fadein {
-  to {background-color: var(--button-fade);}
+  to {
+    background-color: transparent;
+  }
 }
 
 .CustomWindow {
@@ -34,15 +32,13 @@
   /* Control Buttons */
 
   button {
-    animation-fill-mode: both;
     cursor: pointer;
-    animation-name: fadeout;
-    animation-duration: 500ms;
+    transition: 500ms ease-in-out;
+    background-color: transparent;
   }
 
   button:hover {
-    animation-name: fadein;
-    animation-duration: 500ms;
+    background-color: var(--button-fade);
   }
 
   button[title="Close"]:hover {
