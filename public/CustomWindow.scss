@@ -9,8 +9,10 @@
   position: absolute;
   background-color: white;
   border: 1px solid black;
+  animation-direction: reverse;
   animation-fill-mode: forwards;
   animation-duration: 300ms;
+  animation-name: fadeout;
   --button-fade: rgba(127, 127, 127, 0.2);
   
   * {

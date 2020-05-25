@@ -44,8 +44,8 @@ class CustomWindow {
   }
   
   close() {
-    this.win.css('animation-name', 'fadeout');
-    window.setTimeout(this.win.remove.bind(this));
+    this.win.css('animation-direction', 'normal');
+    //window.setTimeout(this.win.remove.bind(this));
   }
 
   topbarVisible(visible) {
