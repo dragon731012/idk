@@ -117,10 +117,11 @@ class BrowserWindow extends CustomWindow {
       
       // Register functionalities
       this.win.find('.searchbox').on('keydown', (ev) => {
-        console.log(this);
-        if (ev.key === 'Enter')
-          navigateTo('https://proxy.funblaster22.repl.co/?url=' +
-                     ((BrowserWindow.isURL(ev.target.value)) ? '' : 'google.com/search?q=') + ev.target.value);
+        if (ev.key === 'Enter') {
+          var fixedURL = ((BrowserWindow.isURL(ev.target.value)) ? '' : 'google.com/search?q=') + ev.target.value
+          this.navigateTo('https://proxy.funblaster22.repl.co/?url=' + fixedURL);
+          ev.target.value = fixedURL;
+        }
       });
       this.win.find('.fa-star').click(this.addBookmark.bind(this));
     })();
@@ -161,9 +162,11 @@ class BrowserWindow extends CustomWindow {
     function focus(e) {
       e.stopPropagation();
       var $target = $(e.target);
-      console.log(e.target);
+      console.debug(e.target);
       this.win.find('.selected').removeClass('selected');
       $target.addClass('selected');
+      
+      this.win.find('.searchbox').val(url)
       
       this.win.find('iframe').hide();
       iframe.show();
