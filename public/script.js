@@ -104,12 +104,14 @@ class CustomWindow {
 class BrowserWindow extends CustomWindow {
   static template = fetch("/BrowserWindow.html").then(d => d.text())
   static stylesheet;
-  static prefs = new Proxy(JSON.parse(localStorage.prefs || (localStorage.prefs = "{}")),
-                           {set: (obj, key, val) => { obj[key] = val; localStorage.prefs = JSON.stringify(obj); }});
+  static prefs = new Proxy(JSON.parse(localStorage.prefs || (localStorage.prefs = "{}")), {
+                     set(obj, key, val) { obj[key] = val; localStorage.prefs = JSON.stringify(obj); },
+                     get(obj, key) { return new Proxy(obj, BrowserWindow.prefs); }
+                 });
   
   constructor(width=0, height=0) {
     var parent = super(width, height);
-    //if (!localStorage.bookmarks) localStorage.bookmarks = [];
+    if (!BrowserWindow.prefs.bookmarks) BrowserWindow.prefs.bookmarks = [];
     if (!BrowserWindow.stylesheet) BrowserWindow.stylesheet = !!$('head').append('<link rel="stylesheet" href="/BrowserWindow.scss">');
     this.init = (async () => {
       await parent.init;
