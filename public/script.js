@@ -104,7 +104,8 @@ class CustomWindow {
 class BrowserWindow extends CustomWindow {
   static template = fetch("/BrowserWindow.html").then(d => d.text())
   static stylesheet;
-  static prefs = JSON.parse(localStorage.prefs || (localStorage.prefs = "{}"));
+  static prefs = new Proxy(JSON.parse(localStorage.prefs || (localStorage.prefs = "{}")),
+                           {set: (obj, key, val) => { localStorage.prefs = JSON.stringify(obj); obj[key] = val; }});
   
   constructor(width=0, height=0) {
     var parent = super(width, height);
