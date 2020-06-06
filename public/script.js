@@ -109,7 +109,7 @@ class BrowserWindow extends CustomWindow {
   
   constructor(width=0, height=0) {
     var parent = super(width, height);
-    if (!localStorage.bookmarks) localStorage.bookmarks = [];
+    //if (!localStorage.bookmarks) localStorage.bookmarks = [];
     if (!BrowserWindow.stylesheet) BrowserWindow.stylesheet = !!$('head').append('<link rel="stylesheet" href="/BrowserWindow.scss">');
     this.init = (async () => {
       await parent.init;
