@@ -104,9 +104,11 @@ class CustomWindow {
 class BrowserWindow extends CustomWindow {
   static template = fetch("/BrowserWindow.html").then(d => d.text())
   static stylesheet;
+  static prefs = JSON.parse(localStorage.prefs || "{}");
   
   constructor(width=0, height=0) {
     var parent = super(width, height);
+    if (!localStorage.bookmarks) localStorage.bookmarks = [];
     if (!BrowserWindow.stylesheet) BrowserWindow.stylesheet = !!$('head').append('<link rel="stylesheet" href="/BrowserWindow.scss">');
     this.init = (async () => {
       await parent.init;
@@ -135,7 +137,6 @@ class BrowserWindow extends CustomWindow {
     var bookmark = $(`<button>${"Bookmark"}</button>`).appendTo('.bookmarks');
     var goto = this.win.find('iframe:visible')[0].src;
     bookmark.click(this.navigateTo.bind(this, goto));
-    if (localStorage.bookmarks) localStorage.bookmarks = [];
     localStorage.bookmarks.push(goto);
   }
   
