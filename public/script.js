@@ -135,6 +135,8 @@ class BrowserWindow extends CustomWindow {
     var bookmark = $(`<button>${"Bookmark"}</button>`).appendTo('.bookmarks');
     var goto = this.win.find('iframe:visible')[0].src;
     bookmark.click(this.navigateTo.bind(this, goto));
+    if (localStorage.bookmarks) localStorage.bookmarks = [];
+    localStorage.bookmarks.push(goto);
   }
   
   showBookmarks() {
