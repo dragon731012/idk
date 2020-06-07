@@ -120,8 +120,9 @@ class BrowserWindow extends CustomWindow {
       await parent.init;
       $(await BrowserWindow.template).appendTo(this.win);
       this.win.addClass('BrowserWindow');
+      this.restoreTabs();
       for (var i=0; i<3; i++) this.newTab("https://www.wikipedia.org");
-      //this.tabs = [new this.#Tab(this)];
+      this.win.find('.appinfo').append('<button class="fas fa-plus"></button>')
       
       // Register functionalities
       this.win.find('.searchbox').on('keydown', (ev) => {
