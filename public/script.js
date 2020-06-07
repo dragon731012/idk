@@ -165,9 +165,9 @@ class BrowserWindow extends CustomWindow {
   }
   
   // TODO: make Tab class?
-  newTab(url="about:blank") {
-    var tab = this.win.find('.appinfo .fa-plus').before(`<div class="tab selected">Tab<button class="closeTab fas fa-times"></button></div>`);
-    var iframe = $(`<iframe src=${url}></iframe>`).appendTo(this.win);
+  newTab(url="about:blank", urlFallback=null) {
+    var tab = $(`<div class="tab selected">Tab<button class="closeTab fas fa-times"></button></div>`).insertBefore(this.win.find('.appinfo .fa-plus'));
+    var iframe = $(`<iframe src=${urlFallback || url}></iframe>`).appendTo(this.win);
     tab.click(focus.bind(this));
     tab.find('button').click(close.bind(this));
     tab.click();
