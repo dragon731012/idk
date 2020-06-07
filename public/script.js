@@ -104,7 +104,7 @@ class CustomWindow {
 class BrowserWindow extends CustomWindow {
   static template = fetch("/BrowserWindow.html").then(d => d.text())
   static stylesheet;
-  static prefs = ObservableSlim.create({ bookmarks:[], showBook: true, ...JSON.parse(localStorage.prefs || (localStorage.prefs = "{}")) }, true, function(changes) {
+  static prefs = ObservableSlim.create({ bookmarks:[], showBook: true, tabs:[], startupBehavior:"restore|<url>|new", ...JSON.parse(localStorage.prefs || (localStorage.prefs = "{}")) }, true, function(changes) {
     localStorage.prefs = JSON.stringify(BrowserWindow.prefs);
   });
   static version = 1;
@@ -160,7 +160,7 @@ class BrowserWindow extends CustomWindow {
 
   navigateTo(url) {
     this.win.find('iframe:visible')[0].src = url;
-    this.win.find('.searchbox').blur();
+    this.win.find('.searchbox').blur().val(url);
   }
   
   // TODO: make Tab class?
