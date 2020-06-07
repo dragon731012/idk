@@ -139,17 +139,18 @@ class BrowserWindow extends CustomWindow {
     return !!str.match(/^(https?:\/\/)|^(\w+\.)+(com|net|co|gov|org|gg|me|info|io)/i);
   }
 
-  addBookmark(e=null, url='current tab') {
+  addBookmark(e=null, url={}) {
     var bookmark = $(`<button>${"Bookmark"}</button>`).appendTo('.bookmarks');
-    var goto = e ? this.win.find('iframe:visible')[0].src : url;
-    bookmark.click(this.navigateTo.bind(this, goto));
-    console.log(url);
-    if (e) BrowserWindow.prefs.bookmarks.push(goto.replace(/^https?:\/\//, ''));
+    var goto = this.win.find('iframe:visible')[0].src;
+    var data = { url: goto.replace(/^https?:\/\//, ''), img: "", text: "", ...url };
+    bookmark.click(this.navigateTo.bind(this, data.url));
+    console.log(data);
+    if (e) BrowserWindow.prefs.bookmarks.push(data);
   }
   
   showBookmarks() {
     for (var bookmark of BrowserWindow.prefs.bookmarks) {
-      this.addBookmark(bookmark);
+      this.addBookmark(null, bookmark);
     }
   }
   
