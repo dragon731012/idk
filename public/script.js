@@ -139,7 +139,7 @@ class BrowserWindow extends CustomWindow {
     var bookmark = $(`<button>${"Bookmark"}</button>`).appendTo('.bookmarks');
     var goto = this.win.find('iframe:visible')[0].src;
     bookmark.click(this.navigateTo.bind(this, goto));
-    BrowserWindow.prefs.bookmarks.push(goto);
+    BrowserWindow.prefs.bookmarks.push(goto.replace(/^https?:\/\//, ''));
   }
   
   showBookmarks() {
@@ -176,7 +176,7 @@ class BrowserWindow extends CustomWindow {
       this.win.find('iframe').hide();
       iframe.show();
       
-      this.win.find('.fa-star').$($0).removeClass('fas far')
+      this.win.find('.fa-star').removeClass('fas far').addClass(BrowserWindow.prefs.bookmarks.includes(url) ? 'fas' : 'far');
     }
     
     function close(e) {
