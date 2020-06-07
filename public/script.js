@@ -107,10 +107,11 @@ class BrowserWindow extends CustomWindow {
   static prefs = ObservableSlim.create(JSON.parse(localStorage.prefs || (localStorage.prefs = "{}")), true, function(changes) {
     localStorage.prefs = JSON.stringify(BrowserWindow.prefs);
   });
+  static prefs = {bookmarks:[], showBook: true, ...BrowserWindow.prefs}
   
   constructor(width=0, height=0) {
     var parent = super(width, height);
-    if (!BrowserWindow.prefs.bookmarks) BrowserWindow.prefs.bookmarks = [];
+    //if (!BrowserWindow.prefs.bookmarks) BrowserWindow.prefs.bookmarks = [];
     if (!BrowserWindow.stylesheet) BrowserWindow.stylesheet = !!$('head').append('<link rel="stylesheet" href="/BrowserWindow.scss">');
     this.init = (async () => {
       await parent.init;
@@ -139,7 +140,7 @@ class BrowserWindow extends CustomWindow {
     var bookmark = $(`<button>${"Bookmark"}</button>`).appendTo('.bookmarks');
     var goto = url[0] == '#' ? url : this.win.find('iframe:visible')[0].src;
     bookmark.click(this.navigateTo.bind(this, goto));
-    //BrowserWindow.prefs.bookmarks.push(goto.replace(/^https?:\/\//, ''));
+    if (url[0] == '#') BrowserWindow.prefs.bookmarks.push(goto.replace(/^https?:\/\//, ''));
   }
   
   showBookmarks() {
