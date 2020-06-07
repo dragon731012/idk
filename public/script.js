@@ -142,7 +142,7 @@ class BrowserWindow extends CustomWindow {
   addBookmark(e=null, url={}) {
     var bookmark = $(`<button>${"Bookmark"}</button>`).appendTo('.bookmarks');
     var goto = this.win.find('iframe:visible')[0].src;
-    var data = { url: goto.replace(/^https?:\/\//, ''), img: "", text: "", ...url };
+    var data = { url: goto, img: "", text: "", ...url };
     bookmark.click(this.navigateTo.bind(this, data.url));
     console.log(data);
     if (e) BrowserWindow.prefs.bookmarks.push(data);
@@ -159,7 +159,8 @@ class BrowserWindow extends CustomWindow {
   }
 
   navigateTo(url) {
-    this.win.find('iframe:visible')[0].src = url
+    this.win.find('iframe:visible')[0].src = url;
+    this.win.find('.searchbox').blur();
   }
   
   // TODO: make Tab class?
