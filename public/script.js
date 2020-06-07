@@ -106,12 +106,12 @@ class BrowserWindow extends CustomWindow {
   static stylesheet;
   static prefs = new Proxy(JSON.parse(localStorage.prefs || (localStorage.prefs = "{}")), {
                      set(obj, key, val) { obj[key] = val; localStorage.prefs = JSON.stringify(obj); return val; }/*,
-                     get(obj, key) { return new Proxy(Reflect.get(...arguments), {}); }*/
+                     get(obj, key) { return typeofnew Proxy(Reflect.get(...arguments), {}); }*/
                  });
   // TODO: remove dependancy
-  static prefs = ObservableSlim.create(BrowserWindow.prefs, true, function(changes) {
+  /*static prefs = ObservableSlim.create(BrowserWindow.prefs, true, function(changes) {
     localStorage.prefs = JSON.stringify(BrowserWindow.prefs);
-  });
+  });*/
   
   constructor(width=0, height=0) {
     var parent = super(width, height);
