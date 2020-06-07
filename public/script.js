@@ -104,14 +104,13 @@ class CustomWindow {
 class BrowserWindow extends CustomWindow {
   static template = fetch("/BrowserWindow.html").then(d => d.text())
   static stylesheet;
-  static prefs = ObservableSlim.create(JSON.parse(localStorage.prefs || (localStorage.prefs = "{}")), true, function(changes) {
+  static prefs = ObservableSlim.create({ bookmarks:[], showBook: true, ...JSON.parse(localStorage.prefs || (localStorage.prefs = "{}")) }, true, function(changes) {
     localStorage.prefs = JSON.stringify(BrowserWindow.prefs);
   });
-  static prefs = {bookmarks:[], showBook: true, ...BrowserWindow.prefs}
   
   constructor(width=0, height=0) {
     var parent = super(width, height);
-    //if (!BrowserWindow.prefs.bookmarks) BrowserWindow.prefs.bookmarks = [];
+    localStorage.prefs = JSON.stringify(BrowserWindow.prefs);
     if (!BrowserWindow.stylesheet) BrowserWindow.stylesheet = !!$('head').append('<link rel="stylesheet" href="/BrowserWindow.scss">');
     this.init = (async () => {
       await parent.init;
