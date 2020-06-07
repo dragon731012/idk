@@ -107,10 +107,14 @@ class BrowserWindow extends CustomWindow {
   static prefs = ObservableSlim.create({ bookmarks:[], showBook: true, ...JSON.parse(localStorage.prefs || (localStorage.prefs = "{}")) }, true, function(changes) {
     localStorage.prefs = JSON.stringify(BrowserWindow.prefs);
   });
+  static version = 1;
   
   constructor(width=0, height=0) {
     var parent = super(width, height);
-    localStorage.prefs = JSON.stringify(BrowserWindow.prefs);
+    if (BrowserWindow.prefs.ver == undefined) BrowserWindow.prefs.ver = BrowserWindow.version;
+    else if (BrowserWindow.prefs.ver != BrowserWindow.version) {
+      localStorage.clear(); location.reload();
+    }
     if (!BrowserWindow.stylesheet) BrowserWindow.stylesheet = !!$('head').append('<link rel="stylesheet" href="/BrowserWindow.scss">');
     this.init = (async () => {
       await parent.init;
@@ -135,11 +139,12 @@ class BrowserWindow extends CustomWindow {
     return !!str.match(/^(https?:\/\/)|^(\w+\.)+(com|net|co|gov|org|gg|me|info|io)/i);
   }
 
-  addBookmark(url='#current tab') {
+  addBookmark(e=null, url='current tab') {
     var bookmark = $(`<button>${"Bookmark"}</button>`).appendTo('.bookmarks');
-    var goto = url[0] == '#' ? url : this.win.find('iframe:visible')[0].src;
+    var goto = e ? this.win.find('iframe:visible')[0].src : url;
     bookmark.click(this.navigateTo.bind(this, goto));
-    if (url[0] == '#') BrowserWindow.prefs.bookmarks.push(goto.replace(/^https?:\/\//, ''));
+    console.log(url);
+    if (e) BrowserWindow.prefs.bookmarks.push(goto.replace(/^https?:\/\//, ''));
   }
   
   showBookmarks() {
