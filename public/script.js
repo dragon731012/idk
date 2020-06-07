@@ -104,7 +104,7 @@ class CustomWindow {
 class BrowserWindow extends CustomWindow {
   static template = fetch("/BrowserWindow.html").then(d => d.text())
   static stylesheet;
-  static prefs = ObservableSlim.create(JSON.parse(localStorage.prefs) || (localStorage.prefs = "{}"), true, function(changes) {
+  static prefs = ObservableSlim.create(JSON.parse(localStorage.prefs || (localStorage.prefs = "{}")), true, function(changes) {
     localStorage.prefs = JSON.stringify(BrowserWindow.prefs);
   });
   
