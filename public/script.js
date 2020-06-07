@@ -120,9 +120,9 @@ class BrowserWindow extends CustomWindow {
       await parent.init;
       $(await BrowserWindow.template).appendTo(this.win);
       this.win.addClass('BrowserWindow');
+      this.win.find('.appinfo').append('<button class="fas fa-plus"></button>').click(this.newTab.bind(this));
       this.restoreTabs();
       for (var i=0; i<3; i++) this.newTab("https://www.wikipedia.org");
-      this.win.find('.appinfo').append('<button class="fas fa-plus"></button>')
       
       // Register functionalities
       this.win.find('.searchbox').on('keydown', (ev) => {
@@ -166,8 +166,7 @@ class BrowserWindow extends CustomWindow {
   
   // TODO: make Tab class?
   newTab(url="about:blank") {
-    var appinfo = this.win.find('.appinfo');
-    var tab = $(`<div class="tab selected">Tab<button class="closeTab fas fa-times"></button></div>`).appendTo(appinfo);
+    var tab = this.win.find('.appinfo .fa-plus').before(`<div class="tab selected">Tab<button class="closeTab fas fa-times"></button></div>`);
     var iframe = $(`<iframe src=${url}></iframe>`).appendTo(this.win);
     tab.click(focus.bind(this));
     tab.find('button').click(close.bind(this));
