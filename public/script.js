@@ -171,7 +171,7 @@ class BrowserWindow extends CustomWindow {
     var iframe = $(`<iframe src=${url}></iframe>`).appendTo(this.win);
     tab.mousedown(focus.bind(this));
     tab.find('button').mousedown(close.bind(this));
-    tab.click();
+    tab.mousedown();
     tab.animate({maxWidth: 200});
     
     function focus(e) {
@@ -192,8 +192,9 @@ class BrowserWindow extends CustomWindow {
     function close(e) {
       e.stopPropagation();
       if (tab.hasClass('selected')) {
-        try { (tab.next('.tab')[0] || tab.prev('.tab')[0]).click() }
-        catch (err) { this.close() }
+        // Try to switch to the right tab, otherwise go left
+        try { (tab.next('.tab')[0] || tab.prev('.tab')[0]).dispatchEvent(new Event('mousedown')) }
+        catch (err) { this.close() } // there are no more tabs, so close entire window
       }
       tab.animate({maxWidth: 0, paddingRight: 0}, 200, tab.remove.bind(tab));
       iframe.remove();
