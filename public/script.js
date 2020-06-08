@@ -189,7 +189,8 @@ class BrowserWindow extends CustomWindow {
     }
     
     function close(e) {
-      //e.stopPropagation();
+      e.stopPropagation();
+      e.stopImmediatePropagation()
       if (tab.hasClass('selected')) {
         try { (tab[0].nextElementSibling || tab[0].previousElementSibling).click() }
         catch (err) { this.close() }
