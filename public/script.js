@@ -63,7 +63,7 @@ class CustomWindow {
       elmnt.onmousedown = dragMouseDown.bind(this);
     }
 
-    function dragMouseDown(e) {
+    function dragMouseDown(e) { console.log(new Date().getTime())
       e = e || window.event;
       console.log(e.defaultPrevented)
       e.preventDefault();
@@ -94,7 +94,7 @@ class CustomWindow {
       else if (pos4 <= 0) { this.toggleSize(); closeDragElement() }
     }
 
-    function closeDragElement() {
+    function closeDragElement() { console.log(new Date().getTime());
       // stop moving when mouse button is released:
       document.onmouseup = null;
       document.onmousemove = null;
@@ -169,8 +169,8 @@ class BrowserWindow extends CustomWindow {
   newTab(url="about:blank") {
     var tab = $(`<div class="tab selected">Tab<button class="closeTab fas fa-times"></button></div>`).insertBefore(this.win.find('.appinfo .fa-plus'));
     var iframe = $(`<iframe src=${url}></iframe>`).appendTo(this.win);
-    tab.click(focus.bind(this));
-    tab.find('button').click(close.bind(this));
+    tab.mousedown(focus.bind(this));
+    tab.find('button').mousedown(close.bind(this));
     tab.click();
     tab.animate({maxWidth: 200});
     
