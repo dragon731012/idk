@@ -66,6 +66,7 @@ class CustomWindow {
     function dragMouseDown(e) {
       e = e || window.event;
       e.preventDefault();
+      e.
       // get the mouse cursor position at startup:
       pos3 = e.clientX;
       pos4 = e.clientY;
@@ -190,9 +191,8 @@ class BrowserWindow extends CustomWindow {
     
     function close(e) {
       e.stopPropagation();
-      e.stopImmediatePropagation()
       if (tab.hasClass('selected')) {
-        try { (tab[0].nextElementSibling || tab[0].previousElementSibling).click() }
+        try { (tab.next('.tab')[0] || tab.prev('.tab')[0]).click() }
         catch (err) { this.close() }
       }
       tab.animate({maxWidth: 0, paddingRight: 0}, 200, tab.remove.bind(tab));
