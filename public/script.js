@@ -121,7 +121,8 @@ class BrowserWindow extends CustomWindow {
       await parent.init;
       $(await BrowserWindow.template).appendTo(this.win);
       this.win.addClass('BrowserWindow');
-      this.win.find('.appinfo').append('<button class="fas fa-plus"></button>').click(this.newTab.bind(this, 'about:blank'));
+      this.win.find('.appinfo').append('<button class="fas fa-plus"></button>').mousedown(e => void e.stopPropagation())
+        .click(this.newTab.bind(this, 'about:blank'));
       this.restoreTabs();
       for (var i=0; i<3; i++) this.newTab("https://www.wikipedia.org");
       
@@ -171,7 +172,7 @@ class BrowserWindow extends CustomWindow {
     var iframe = $(`<iframe src=${url}></iframe>`).appendTo(this.win);
     tab.mousedown(focus.bind(this));
     tab.find('button').mousedown(close.bind(this));
-    tab.click();
+    //tab.click();
     tab.animate({maxWidth: 200});
     
     function focus(e) {
