@@ -6,10 +6,12 @@ $(function() {
 });
 
 window.addEventListener('message', function(e) {
-  if (e.data == 'navBack') {
-    history.back();
-  } else if (e.data == 'navForward') {
-    history.forward();
+  console.log(e.data);
+  switch (e.data.type) {
+    case 'title':
+      break;
+    case 'href':
+      break
   }
 });
 
