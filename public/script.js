@@ -143,7 +143,8 @@ class BrowserWindow extends CustomWindow {
         }
       });
       this.win.find('.fa-star').click(this.addBookmark.bind(this));
-      this.win.find('.fa-arrow-left').click(() => void this.win.find('iframe:visible')[0].postMessage('navBack', '*'));
+      this.win.find('.fa-arrow-left').click(() => void this.win.find('iframe:visible')[0].contentWindow.postMessage('navBack', '*'));
+      this.win.find('.fa-arrow-right').click(() => void this.win.find('iframe:visible')[0].contentWindow.postMessage('navForward', '*'));
     })();
   }
 
