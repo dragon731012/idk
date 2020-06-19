@@ -11,7 +11,7 @@ window.addEventListener('message', function(e) {
     case 'title':
       break;
     case 'href':
-      break
+      this.win.find('.searchbox').val(e.val); break
     case 'icon':
       break;
     case 'open':
