@@ -5,6 +5,14 @@ $(function() {
   myWin = new BrowserWindow();
 });
 
+window.addEventListener('message', function(e) {
+  if (e.data == 'navBack') {
+    history.back();
+  } else if (e.data == 'navForward') {
+    history.forward();
+  }
+});
+
 class CustomWindow {
   static template = fetch("/CustomWindow.html").then(d => d.text());
   
@@ -135,6 +143,7 @@ class BrowserWindow extends CustomWindow {
         }
       });
       this.win.find('.fa-star').click(this.addBookmark.bind(this));
+      this.win.find('.fa-arrow-left').click(() => void this.win.find('iframe:visible')[0].postMessage('navBack', '*'));
     })();
   }
 
