@@ -132,7 +132,7 @@ class BrowserWindow extends CustomWindow {
       $('<button class="fas fa-plus"></button>').appendTo(this.win.find('.appinfo')).mousedown(e => e.stopPropagation())
         .click(this.newTab.bind(this, 'about:blank'));
       this.restoreTabs();
-      for (var i=0; i<3; i++) this.newTab("https://www.wikipedia.org");
+      for (var i=0; i<1; i++) this.newTab("about:blank");
       
       // Register functionalities
       this.win.find('.searchbox').on('keydown', (ev) => {
@@ -145,6 +145,7 @@ class BrowserWindow extends CustomWindow {
       this.win.find('.fa-star').click(this.addBookmark.bind(this));
       this.win.find('.fa-arrow-left').click(() => void this.win.find('iframe:visible')[0].contentWindow.postMessage('navBack', '*'));
       this.win.find('.fa-arrow-right').click(() => void this.win.find('iframe:visible')[0].contentWindow.postMessage('navForward', '*'));
+      this.win.find('.fa-redo-alt').click(() => void this.win.find('iframe:visible')[0].contentWindow.postMessage('reload', '*'));
     })();
   }
 
