@@ -130,7 +130,7 @@ class BrowserWindow extends CustomWindow {
       this.win.find('.searchbox').on('keydown', (ev) => {
         if (ev.key === 'Enter') {
           var fixedURL = ((BrowserWindow.isURL(ev.target.value)) ? '' : 'google.com/search?q=') + ev.target.value
-          this.navigateTo('https://proxy.funblaster22.repl.co/?url=' + fixedURL);
+          this.navigateTo('https://proxy.funblaster22.repl.co/http://' + fixedURL);
           ev.target.value = fixedURL;
         }
       });
