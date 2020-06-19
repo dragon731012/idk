@@ -72,7 +72,7 @@ class CustomWindow {
       elmnt.onmousedown = dragMouseDown.bind(this);
     }
 
-    function dragMouseDown(e) { console.log(new Date().getTime())
+    function dragMouseDown(e) {
       e = e || window.event;
       e.preventDefault();
       // get the mouse cursor position at startup:
@@ -102,7 +102,7 @@ class CustomWindow {
       else if (pos4 <= 0) { this.toggleSize(); closeDragElement() }
     }
 
-    function closeDragElement() { console.log(new Date().getTime());
+    function closeDragElement() {
       // stop moving when mouse button is released:
       document.onmouseup = null;
       document.onmousemove = null;
@@ -224,6 +224,7 @@ class BrowserWindow extends CustomWindow {
 class PopupWindow extends CustomWindow {
   constructor(url="about:blank", width=300, height=300) {
     super(width, height).init.then(() => {
+      this.win.addClass('PopupWindow');
       this.name("Popup Window");
       this.win.append(`<div style="background-color: var(--bg-color);">${url}</div><iframe src="${url}"></iframe>`)
     });

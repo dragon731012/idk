@@ -68,3 +68,13 @@
     }
   }
 }
+
+.PopupWindow {
+  overflow: hidden;
+
+  iframe {
+    width: 100%;
+    height: calc(100% - 32px);
+    border: 0;
+  }
+}
