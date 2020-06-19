@@ -9,9 +9,9 @@ window.addEventListener('message', function(e) {
   console.log(e.data);
   switch (e.data.type) {
     case 'title':
-      break;
+      this.win.find('.tab.selected').val(e.val);
     case 'href':
-      this.win.find('.searchbox').val(e.val); break
+      this.win.find('.searchbox').val(e.val.replace(location.origin + '/', '')); break
     case 'icon':
       break;
     case 'open':
