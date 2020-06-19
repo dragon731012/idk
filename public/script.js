@@ -12,6 +12,10 @@ window.addEventListener('message', function(e) {
       break;
     case 'href':
       break
+    case 'icon':
+      break;
+    case 'open':
+      new PopupWindow(e.data.url); break;  // TODO: resolve url to domain
   }
 });
 
