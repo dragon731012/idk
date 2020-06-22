@@ -195,10 +195,9 @@ class BrowserWindow extends CustomWindow {
     
     function focus(e) {
       e.stopPropagation();
-      var $target = $(e.target);
       console.debug(e.target);
       this.win.find('.selected').removeClass('selected');
-      $target.addClass('selected');
+      tab.addClass('selected');
       
       this.win.find('.searchbox').val(url)
       
