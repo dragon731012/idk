@@ -144,7 +144,7 @@ class BrowserWindow extends CustomWindow {
         console.log(e.data);
         switch (e.data.type) {
           case 'title':
-            this.win.find('.tab.selected').val(e.data.val); break;
+            this.win.find('.tab.selected')contents[0].data = e.data.val; break;
           case 'href':
             this.win.find('.searchbox').val(e.data.val.replace(BrowserWindow.PROXY_URL, '')); break;
           case 'icon':
