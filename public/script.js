@@ -5,20 +5,6 @@ $(function() {
   myWin = new BrowserWindow();
 });
 
-window.addEventListener('message', function(e) {
-  console.log(e.data);
-  switch (e.data.type) {
-    case 'title':
-      this.win.find('.tab.selected').val(e.val);
-    case 'href':
-      this.win.find('.searchbox').val(e.val.replace(location.origin + '/', '')); break
-    case 'icon':
-      break;
-    case 'open':
-      new PopupWindow(e.data.url); break;  // TODO: resolve url to domain
-  }
-});
-
 class CustomWindow {
   static template = fetch("/CustomWindow.html").then(d => d.text());
   
@@ -123,6 +109,7 @@ class BrowserWindow extends CustomWindow {
     localStorage.prefs = JSON.stringify(BrowserWindow.prefs);
   });
   static version = 1;
+  static PROXY_URL = 'https://proxy.funblaster22.repl.co/http:/';
   
   constructor(width=0, height=0) {
     var parent = super(width, height);
@@ -144,7 +131,7 @@ class BrowserWindow extends CustomWindow {
       this.win.find('.searchbox').on('keydown', (ev) => {
         if (ev.key === 'Enter') {
           var fixedURL = ((BrowserWindow.isURL(ev.target.value)) ? '' : 'google.com/search?q=') + ev.target.value
-          this.navigateTo('https://proxy.funblaster22.repl.co/http://' + fixedURL);
+          this.navigateTo(BrowserWindow.PROXY_URL + fixedURL);
           ev.target.value = fixedURL;
         }
       });
@@ -152,6 +139,20 @@ class BrowserWindow extends CustomWindow {
       this.win.find('.fa-arrow-left').click(() => void this.win.find('iframe:visible')[0].contentWindow.postMessage('navBack', '*'));
       this.win.find('.fa-arrow-right').click(() => void this.win.find('iframe:visible')[0].contentWindow.postMessage('navForward', '*'));
       this.win.find('.fa-redo-alt').click(() => void this.win.find('iframe:visible')[0].contentWindow.postMessage('reload', '*'));
+      
+      window.addEventListener('message', e => {
+        console.log(e.data);
+        switch (e.data.type) {
+          case 'title':
+            this.win.find('.tab.selected').val(e.data.val); break;
+          case 'href':
+            this.win.find('.searchbox').val(e.data.val.replace(BrowserWindow.PROXY_URL, '')); break;
+          case 'icon':
+            break;
+          case 'open':
+            new PopupWindow(e.data.url); break;  // TODO: resolve url to domain
+        }
+      });
     })();
   }
 
