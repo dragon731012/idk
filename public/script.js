@@ -109,7 +109,7 @@ class BrowserWindow extends CustomWindow {
     localStorage.prefs = JSON.stringify(BrowserWindow.prefs);
   });
   static version = 1;
-  static PROXY_URL = 'https://proxy.funblaster22.repl.co/http:/';
+  static PROXY_URL = 'https://proxy--funblaster22.repl.co/http:/';
   
   constructor(width=0, height=0) {
     var parent = super(width, height);
