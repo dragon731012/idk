@@ -130,7 +130,7 @@ class BrowserWindow extends CustomWindow {
       // Register functionalities
       this.win.find('.searchbox').on('keydown', (ev) => {
         if (ev.key === 'Enter') {
-          var fixedURL = ((BrowserWindow.isURL(ev.target.value)) ? '' : 'google.com/search?q=') + ev.target.value
+          var fixedURL = ((BrowserWindow.isURL(ev.target.value)) ? '' : 'google.com/search?q=') + ev.target.value.replace(/^https?:\/?\/?/, '')
           this.navigateTo(BrowserWindow.PROXY_URL + fixedURL);
           ev.target.value = fixedURL;
         }
