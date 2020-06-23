@@ -149,7 +149,7 @@ class BrowserWindow extends CustomWindow {
             const URL = e.data.val.replace(BrowserWindow.PROXY_URL, '')
             this.win.find('.searchbox').val(URL);
             this.win.find('.tab.selected')[0].url = URL;
-            // TODO: could ca 
+            // TODO: could cause problems if page finishes loading wile another tab is selected 
             break;
           case 'icon':
             break;
@@ -190,12 +190,13 @@ class BrowserWindow extends CustomWindow {
   
   // TODO: make Tab class?
   newTab(url="about:blank") {
-    var tab = $(`<div class="tab selected"><span>Tab</span><button class="closeTab fas fa-times"></button></div>`).insertBefore(this.win.find('.appinfo .fa-plus'));
-    tab.url = url;
+    var tab = $(`<div class="tab selected"><img /><span>New Tab</span><button class="closeTab fas fa-times"></button></div>`).insertBefore(this.win.find('.appinfo .fa-plus'));
+    tab[0].url = url;
     var iframe = $(`<iframe src=${url}></iframe>`).appendTo(this.win);
     tab.mousedown(focus.bind(this));
     tab.find('button').mousedown(close.bind(this));
     tab.mousedown();
+    this.win.find('.searchbox').select();
     tab.animate({maxWidth: 200});
     
     function focus(e) {
@@ -204,12 +205,12 @@ class BrowserWindow extends CustomWindow {
       this.win.find('.selected').removeClass('selected');
       tab.addClass('selected');
       
-      this.win.find('.searchbox').val(url)
+      this.win.find('.searchbox').val(tab[0].url)
       
       this.win.find('iframe').hide();
       iframe.show();
       
-      this.win.find('.fa-star').removeClass('fas far').addClass(BrowserWindow.prefs.bookmarks.includes(url) ? 'fas' : 'far');
+      this.win.find('.fa-star').removeClass('fas far').addClass(BrowserWindow.prefs.bookmarks.includes(tab[0].url) ? 'fas' : 'far');
     }
     
     function close(e) {
