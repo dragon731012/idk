@@ -5,10 +5,6 @@ const fs = require('fs');
 const showdown  = require('showdown'),
       converter = new showdown.Converter();
 
-app.get('/README.md', function(req, res, next) {
-  res.sendFile(__dirname + '/README.md');
-});
-
 // make all the files in 'public' available
 // https://expressjs.com/en/starter/static-files.html
 app.get('/*', function(req, res, next) {
@@ -24,7 +20,7 @@ app.get('/*', function(req, res, next) {
       }).css);
       res.end(); break;
     case 'md':
-      res.send(converter.makeHtml(fs.readFileSync(__dirname + '/public/' + filename)));
+      res.send(converter.makeHtml(fs.readFileSync(__dirname + (filename == 'README.md' ? '/' : '/public/')  + filename, 'utf-8')) );
       break;
     default:
       express.static("public")(req, res, next);

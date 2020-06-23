@@ -234,7 +234,7 @@ class BrowserWindow extends CustomWindow {
 }
 
 class PopupWindow extends CustomWindow {
-  constructor(url="about:blank", width=300, height=300) {
+  constructor(url="about:blank", width=500, height=500) {
     super(width, height).init.then(() => {
       this.win.addClass('PopupWindow');
       this.name("Popup Window");
