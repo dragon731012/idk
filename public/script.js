@@ -152,7 +152,7 @@ class BrowserWindow extends CustomWindow {
             // TODO: could cause problems if page finishes loading wile another tab is selected 
             break;
           case 'icon':
-            break;
+            this.win.find('.tab.selected img').attr('src', e.data.val); break;
           case 'open':
             new PopupWindow(e.data.url); break;  // TODO: resolve url to domain
         }
