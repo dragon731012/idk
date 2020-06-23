@@ -11,7 +11,8 @@
   },
   "dependencies": {
     "express": "^4.17.1",
-    "node-sass": "^4.14.1"
+    "node-sass": "^4.14.1",
+    "showdown": "^1.9.1"
   },
   "engines": {
     "node": "12.x"
@@ -19,7 +20,7 @@
   "repository": {
     "url": "https://glitch.com/edit/#!/virtual-browser"
   },
-  "license": "MIT",
+  "license": "GNU",
   "keywords": [
     "node",
     "glitch",
