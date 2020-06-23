@@ -146,7 +146,11 @@ class BrowserWindow extends CustomWindow {
           case 'title':
             this.win.find('.tab.selected span').text(e.data.val); break;
           case 'href':
-            this.win.find('.searchbox').val(e.data.val.replace(BrowserWindow.PROXY_URL, '')); break;
+            const URL = e.data.val.replace(BrowserWindow.PROXY_URL, '')
+            this.win.find('.searchbox').val(URL);
+            this.win.find('.tab.selected')[0].url = URL;
+            // TODO: could ca 
+            break;
           case 'icon':
             break;
           case 'open':
@@ -187,6 +191,7 @@ class BrowserWindow extends CustomWindow {
   // TODO: make Tab class?
   newTab(url="about:blank") {
     var tab = $(`<div class="tab selected"><span>Tab</span><button class="closeTab fas fa-times"></button></div>`).insertBefore(this.win.find('.appinfo .fa-plus'));
+    tab.url = url;
     var iframe = $(`<iframe src=${url}></iframe>`).appendTo(this.win);
     tab.mousedown(focus.bind(this));
     tab.find('button').mousedown(close.bind(this));
