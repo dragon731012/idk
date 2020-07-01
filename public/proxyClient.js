@@ -1,6 +1,6 @@
 export default function(startURL='https://wikipedia.org') {
 const img = document.createElement('img');
-var io;  // Nessisary to prevent Glitch.com warnings
+// Ignore Glitch.com `'io' is undefined` warnings; imported in index.html
 const socket = io();
 
 socket.on('update', function(data) {
