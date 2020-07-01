@@ -1,3 +1,5 @@
+module.exports = function startProxy(app) {
+
 const puppeteer = require('puppeteer'),
     http = require('http').createServer(app),
     io = require('socket.io')(http);
@@ -134,3 +136,4 @@ io.on('connection', async socket => {
   
   //while (!page.isClosed()) await update();
 });
+}
