@@ -134,7 +134,7 @@ class BrowserWindow extends CustomWindow {
         ev.stopPropagation();
         if (ev.key === 'Enter') {
           var fixedURL = ((BrowserWindow.isURL(ev.target.value)) ? '' : 'google.com/search?q=') + ev.target.value.replace(/^https?:\/?\/?/, '')
-          this.navigateTo(BrowserWindow.PROXY_URL + fixedURL);
+          this.navigateTo(fixedURL);
           ev.target.value = fixedURL;
         }
       });
