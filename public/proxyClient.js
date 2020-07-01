@@ -1,4 +1,4 @@
-export default function() {
+export default function(startURL='https://wikipedia.org') {
 const img = document.createElement('img');
 var io;  // Nessisary to prevent Glitch.com warnings
 const socket = io();
@@ -50,7 +50,7 @@ socket.on('dialog', function(dialog) {
 
 socket.on('connect', function(data) {
   console.debug("CONNECTED");
-  socket.emit("navigate", 'https://wikipedia.org');
+  socket.emit("navigate", startURL);
   window.onresize();
 });
   

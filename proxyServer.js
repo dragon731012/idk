@@ -1,6 +1,7 @@
-module.exports = function(app) {
+module.exports = function(http) {
 
-
+const puppeteer = require('puppeteer'),
+    io = require('socket.io')(http);
 
 var browserWait, userCount = 0;
 

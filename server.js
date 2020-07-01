@@ -4,17 +4,13 @@ const app = express();
 const fs = require('fs');
 const showdown  = require('showdown'),
       converter = new showdown.Converter();
-
-const puppeteer = require('puppeteer'),
-    http = require('http').createServer(app),
-    io = require('socket.io')(http);
-//require('./proxyServer.js')();
+const http = require('http').createServer(app)
+require('./proxyServer.js')(http);
 
 
 // make all the files in 'public' available
 // https://expressjs.com/en/starter/static-files.html
 app.get('/*', function(req, res, next) {
-  console.log("OOF", req.url)
   var url = req.url.split('.');
   var filename = req.url.split('/');
   filename = filename[filename.length-1];
@@ -41,6 +37,6 @@ app.get("/", (request, response) => {
 });
 
 
-const listener = app.listen(process.env.PORT, () => {
-  console.log("Your app is listening on port " + listener.address().port);
+http.listen(3000, () => {
+  console.log('Your app is listening on port 3000');
 });
