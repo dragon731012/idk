@@ -12,7 +12,9 @@
   "dependencies": {
     "express": "^4.17.1",
     "node-sass": "^4.14.1",
-    "showdown": "^1.9.1"
+    "showdown": "^1.9.1",
+    "socket.io": "^2.3.0",
+    "puppeteer": "^1.14.0"
   },
   "engines": {
     "node": "12.x"
