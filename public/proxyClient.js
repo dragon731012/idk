@@ -53,6 +53,7 @@ socket.on('connect', function(data) {
   socket.emit("navigate", startURL);
   window.onresize();
 });
-  
-return {img, socket};
+ 
+img.socket = socket;
+return img;
 }

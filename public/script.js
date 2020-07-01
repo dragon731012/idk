@@ -131,6 +131,7 @@ class BrowserWindow extends CustomWindow {
       
       // Register functionalities
       this.win.find('.searchbox').on('keydown', (ev) => {
+        ev.stopPropagation();
         if (ev.key === 'Enter') {
           var fixedURL = ((BrowserWindow.isURL(ev.target.value)) ? '' : 'google.com/search?q=') + ev.target.value.replace(/^https?:\/?\/?/, '')
           this.navigateTo(BrowserWindow.PROXY_URL + fixedURL);
@@ -187,7 +188,7 @@ class BrowserWindow extends CustomWindow {
   }
 
   navigateTo(url) {
-    this.win.find('.iframe:visible')[0].src = url;
+    this.win.find('.iframe:visible')[0].socket.emit("navigate", url);
     this.win.find('.searchbox').blur().val(url);
   }
   
@@ -195,8 +196,7 @@ class BrowserWindow extends CustomWindow {
   newTab(url="about:blank") {
     var tab = $(`<div class="tab selected"><img /><span>New Tab</span><button class="closeTab fas fa-times"></button></div>`).insertBefore(this.win.find('.appinfo .fa-plus'));
     tab[0].url = url;
-    var {img, socket} = newProxyClient(url);
-    img = $(img).appendTo(this.win).addClass('iframe');
+    var img = $(newProxyClient(url)).appendTo(this.win).addClass('iframe');
     tab.mousedown(focus.bind(this));
     tab.find('button').mousedown(close.bind(this));
     tab.mousedown();
