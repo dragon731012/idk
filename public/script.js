@@ -138,9 +138,10 @@ class BrowserWindow extends CustomWindow {
         }
       });
       this.win.find('.fa-star').click(this.addBookmark.bind(this));
+      /* TODO: re-implement
       this.win.find('.fa-arrow-left').click(() => void this.win.find('iframe:visible')[0].contentWindow.postMessage('navBack', '*'));
       this.win.find('.fa-arrow-right').click(() => void this.win.find('iframe:visible')[0].contentWindow.postMessage('navForward', '*'));
-      this.win.find('.fa-redo-alt').click(() => void this.win.find('iframe:visible')[0].contentWindow.postMessage('reload', '*'));
+      this.win.find('.fa-redo-alt').click(() => void this.win.find('iframe:visible')[0].contentWindow.postMessage('reload', '*'));*/
       
       window.addEventListener('message', e => {
         console.log(e.data);
@@ -168,7 +169,7 @@ class BrowserWindow extends CustomWindow {
 
   addBookmark(e=null, url={}) {
     var bookmark = $(`<button>${"Bookmark"}</button>`).appendTo('.bookmarks');
-    var goto = this.win.find('iframe:visible')[0].src;
+    var goto = this.win.find('.iframe:visible')[0].src;
     var data = { url: goto, img: "", text: "", ...url };
     bookmark.click(this.navigateTo.bind(this, data.url));
     console.log(data);
@@ -186,7 +187,7 @@ class BrowserWindow extends CustomWindow {
   }
 
   navigateTo(url) {
-    this.win.find('iframe:visible')[0].src = url;
+    this.win.find('.iframe:visible')[0].src = url;
     this.win.find('.searchbox').blur().val(url);
   }
   
@@ -210,8 +211,8 @@ class BrowserWindow extends CustomWindow {
       
       this.win.find('.searchbox').val(tab[0].url)
       
-      this.win.find('iframe').hide();
-      iframe.show();
+      this.win.find('.iframe').hide();
+      img.show();
       
       this.win.find('.fa-star').removeClass('fas far').addClass(BrowserWindow.prefs.bookmarks.includes(tab[0].url) ? 'fas' : 'far');
     }
@@ -224,7 +225,7 @@ class BrowserWindow extends CustomWindow {
         catch (err) { this.close() } // there are no more tabs, so close entire window
       }
       tab.animate({maxWidth: 0, paddingRight: 0}, 200, tab.remove.bind(tab));
-      iframe.remove();
+      img.remove();
     }
   }
 
