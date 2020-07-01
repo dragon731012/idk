@@ -225,6 +225,7 @@ class BrowserWindow extends CustomWindow {
         catch (err) { this.close() } // there are no more tabs, so close entire window
       }
       tab.animate({maxWidth: 0, paddingRight: 0}, 200, tab.remove.bind(tab));
+      img[0].socket.disconnect();
       img.remove();
     }
   }
