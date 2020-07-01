@@ -54,5 +54,5 @@ socket.on('connect', function(data) {
   window.onresize();
 });
   
-return img;
+return {img, socket};
 }

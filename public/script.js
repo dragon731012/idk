@@ -194,7 +194,8 @@ class BrowserWindow extends CustomWindow {
   newTab(url="about:blank") {
     var tab = $(`<div class="tab selected"><img /><span>New Tab</span><button class="closeTab fas fa-times"></button></div>`).insertBefore(this.win.find('.appinfo .fa-plus'));
     tab[0].url = url;
-    var iframe = $(`<iframe src=${url}></iframe>`).appendTo(this.win);
+    var {img, socket} = newProxyClient(url);
+    img = $(img).appendTo(this.win).addClass('iframe');
     tab.mousedown(focus.bind(this));
     tab.find('button').mousedown(close.bind(this));
     tab.mousedown();
