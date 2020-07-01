@@ -4,12 +4,17 @@ const app = express();
 const fs = require('fs');
 const showdown  = require('showdown'),
       converter = new showdown.Converter();
-require('./proxyServer.js')();
+
+const puppeteer = require('puppeteer'),
+    http = require('http').createServer(app),
+    io = require('socket.io')(http);
+//require('./proxyServer.js')();
 
 
 // make all the files in 'public' available
 // https://expressjs.com/en/starter/static-files.html
 app.get('/*', function(req, res, next) {
+  console.log("OOF", req.url)
   var url = req.url.split('.');
   var filename = req.url.split('/');
   filename = filename[filename.length-1];
