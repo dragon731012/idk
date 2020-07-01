@@ -10,11 +10,11 @@ socket.on('update', function(data) {
 
 img.onclick = ev => {
   console.debug("CLICKED");
-  socket.emit('click', {x: ev.clientX, y: ev.clientY});
+  socket.emit('click', {x: ev.offsetX, y: ev.offsetY});
 };
   
 img.onmousemove = ev => {
-  socket.emit('move', {x: ev.clientX, y: ev.clientY});
+  socket.emit('move', {x: ev.offsetX, y: ev.offsetY});
 };
 
 img.onwheel = ev => {

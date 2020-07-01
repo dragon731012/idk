@@ -27,6 +27,7 @@ io.on('connection', async socket => {
   browserWait.then(async browser => {
     pageWait = browser.newPage();
     page = await pageWait;
+    await page.emulateMedia('screen');
     
      page.on('popup', page => {
       socket.emit('popup', page.url());
