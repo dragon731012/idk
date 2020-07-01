@@ -4,10 +4,14 @@ const app = express();
 const fs = require('fs');
 const showdown  = require('showdown'),
       converter = new showdown.Converter();
-renst startProxyServer = quire('./proxyServer.js')();;
-startProxyServer();/ make all the files in 'public' available
+require('./proxyServer.js')();
+
+
+// make all the files in 'public' available
 // https://expressjs.com/en/starter/static-files.html
 app.get('/*', function(req, res, next) {
+  if (req.url.includes('socket.io')) { console.log('skip'); next(); return; }
+  
   var url = req.url.split('.');
   var filename = req.url.split('/');
   filename = filename[filename.length-1];
@@ -36,4 +40,4 @@ app.get("/", (request, response) => {
 
 const listener = app.listen(process.env.PORT, () => {
   console.log("Your app is listening on port " + listener.address().port);
-});co
+});
