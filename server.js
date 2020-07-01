@@ -4,7 +4,7 @@ const app = express();
 const fs = require('fs');
 const showdown  = require('showdown'),
       converter = new showdown.Converter();
-const startProxyServer = require('./proxy.js')
+//require('./proxyServer.js')();
 
 
 // make all the files in 'public' available

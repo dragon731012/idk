@@ -1,4 +1,4 @@
-module.exports = function startProxy(app) {
+module.exports = function(app) {
 
 const puppeteer = require('puppeteer'),
     http = require('http').createServer(app),
