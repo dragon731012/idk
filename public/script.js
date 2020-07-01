@@ -1,3 +1,5 @@
+import newProxyClient from './proxyClient.js'
+
 var myWin;
 $(function() {
   $('head').append('<link rel="stylesheet" href="/CustomWindow.scss">');

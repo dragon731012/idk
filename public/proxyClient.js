@@ -1,4 +1,4 @@
-export
+export default function() {
 const img = document.createElement('img');
 var io;  // Nessisary to prevent Glitch.com warnings
 const socket = io();
@@ -53,3 +53,6 @@ socket.on('connect', function(data) {
   socket.emit("navigate", 'https://wikipedia.org');
   window.onresize();
 });
+  
+return img;
+}
