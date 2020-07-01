@@ -10,8 +10,6 @@ require('./proxyServer.js')();
 // make all the files in 'public' available
 // https://expressjs.com/en/starter/static-files.html
 app.get('/*', function(req, res, next) {
-  if (req.url.includes('socket.io')) { console.log('skip'); next(); return; }
-  
   var url = req.url.split('.');
   var filename = req.url.split('/');
   filename = filename[filename.length-1];
