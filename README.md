@@ -8,4 +8,4 @@ This project is made possible by the following open-source libraries (in no part
 - [node-sass](https://github.com/sass/node-sass): [MIT lisence](https://github.com/sass/node-sass/blob/master/LICENSE)
 - [Showdown](https://github.com/showdownjs/showdown): [MIT lisence](https://github.com/showdownjs/showdown/blob/master/LICENSE)
 
-### (c) 2020 Made by Ethan (GNU General Public Lisence)
+### (c) 2020 Made by Ethan ([GNU General Public Lisence](/LISENCE.md))

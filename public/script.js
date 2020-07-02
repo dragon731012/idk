@@ -245,8 +245,13 @@ class PopupWindow extends CustomWindow {
     super(width, height).init.then(() => {
       this.win.addClass('PopupWindow');
       this.name("Popup Window");
-      var img = $(newProxyClient(url))
-      $(`<div style="background-color: var(--bg-color);">${url}</div>`).after(img).appendTo(this.win)
+      this.img = newProxyClient(url)
+      $(`<div style="background-color: var(--bg-color);">${url}</div>`).appendTo(this.win).after(this.img)
     });
+  }
+  
+  close() {
+    super.close();
+    this.img.socket.disconnect();
   }
 }
