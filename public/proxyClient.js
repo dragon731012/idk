@@ -1,3 +1,12 @@
+document.onkeydown = ev => {
+  console.log("KEYPRESS", ev.key);
+  document.querySelector('img.iframe.selected').socket.emit('keydown', ev.code);
+};
+
+document.onkeyup = ev => {
+  document.querySelector('img.iframe.selected').socket.emit('keyup', ev.code);
+};
+
 function newProxyClient(startURL='https://wikipedia.org') {
 const img = document.createElement('img');
 // Ignore Glitch.com `'io' is undefined` warnings; imported in index.html
@@ -21,15 +30,6 @@ img.onwheel = ev => {
   //console.debug("SCROLL");
   socket.emit('scroll', { x: ev.deltaX, y: ev.deltaY });
 }
-
-document.onkeydown = ev => {
-  console.log("KEYPRESS", ev.key);
-  socket.emit('keydown', ev.code);
-};
-
-document.onkeyup = ev => {
-  socket.emit('keyup', ev.code);
-};
 
 window.onresize = function(ev) {
   console.debug("RESIZED");
