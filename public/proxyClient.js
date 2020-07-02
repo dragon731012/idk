@@ -43,6 +43,7 @@ socket.on('meta', function(data) {
   $('.tab.selected span').text(data.title);  // TODO: change correct tab title even if focus changed
   $('.searchbox').val(data.url);
   $('.tab.selected')[0].url = data.url;
+  $('.tab.selected img')[0].src = data.icon;
   // TODO: could cause problems if page finishes loading wile another tab is selected
   //document.querySelector('link[rel=icon]').href = data.icon;
 });
@@ -60,5 +61,6 @@ socket.on('connect', function(data) {
 });
  
 img.socket = socket;
+img.draggable = false;
 return img;
 }
