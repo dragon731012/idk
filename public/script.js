@@ -137,6 +137,9 @@ class BrowserWindow extends CustomWindow {
       })
       .on('keyup', ev => ev.stopPropagation());
       this.win.find('.fa-star').click(this.addBookmark.bind(this));
+      this.win.find('.fa-arrow-left').click(() => void this.win.find('.iframe:visible')[0].socket.emit("navigate", -1));
+      this.win.find('.fa-arrow-right').click(() => void this.win.find('.iframe:visible')[0].socket.emit("navigate", 1));
+      this.win.find('.fa-redo-alt').click(() => void this.win.find('.iframe:visible')[0].socket.emit("navigate", 0));
       /* TODO: re-implement
       this.win.find('.fa-arrow-left').click(() => void this.win.find('iframe:visible')[0].contentWindow.postMessage('navBack', '*'));
       this.win.find('.fa-arrow-right').click(() => void this.win.find('iframe:visible')[0].contentWindow.postMessage('navForward', '*'));
