@@ -40,7 +40,7 @@ window.onresize = function(ev) {
   
 socket.on('meta', function(data) {
   console.log(data);
-  document.title = data.title;
+  $('.tab.selected span').text(data.title);  // TODO: change correct tab title even if focus changed
   document.querySelector('link[rel=icon]').href = data.icon;
 });
   
