@@ -134,7 +134,8 @@ class BrowserWindow extends CustomWindow {
           this.navigateTo(fixedURL);
           ev.target.value = fixedURL;
         }
-      });
+      })
+      .on('keyup', ev => ev.stopPropagation());
       this.win.find('.fa-star').click(this.addBookmark.bind(this));
       /* TODO: re-implement
       this.win.find('.fa-arrow-left').click(() => void this.win.find('iframe:visible')[0].contentWindow.postMessage('navBack', '*'));

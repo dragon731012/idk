@@ -1,10 +1,12 @@
 document.onkeydown = ev => {
+  ev.preventDefault();
   console.log("KEYPRESS", ev.key);
-  document.querySelector('img.iframe.selected').socket.emit('keydown', ev.code);
+  $('img.iframe:visible')[0].socket.emit('keydown', ev.code);
 };
 
 document.onkeyup = ev => {
-  document.querySelector('img.iframe.selected').socket.emit('keyup', ev.code);
+  ev.preventDefault();
+  $('img.iframe:visible')[0].socket.emit('keyup', ev.code);
 };
 
 function newProxyClient(startURL='https://wikipedia.org') {
