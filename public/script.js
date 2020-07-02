@@ -3,10 +3,9 @@ $(function() {
   $('head').append('<link rel="stylesheet" href="/CustomWindow.scss">');
   $('[href="//button.glitch.me/css/glitch.css"]').remove()
   myWin = new BrowserWindow();
-  new PopupWindow();
 });
 
-export class CustomWindow {
+class CustomWindow {
   static template = fetch("/CustomWindow.html").then(d => d.text());
   
   constructor(width=0, height=0, {left=0, top=0, name="", icon="", groupWith="CustomWindow"} = {}) {
@@ -48,7 +47,6 @@ export class CustomWindow {
   close() {
     this.win.css('animation-name', 'fadeout');
     window.setTimeout($().remove.bind(this.win), 300);
-    window.setTimeout(location.reload.bind(location), 1000);
   }
 
   topbarVisible(visible) {
@@ -190,6 +188,11 @@ class BrowserWindow extends CustomWindow {
     this.win.find('.iframe:visible')[0].socket.emit("navigate", url);
     this.win.find('.searchbox').blur().val(url);
   }
+
+  close() {
+    super.close();
+    window.setTimeout(location.reload.bind(location), 1000);
+  }
   
   // TODO: make Tab class?
   newTab(url="about:blank") {
@@ -242,7 +245,8 @@ class PopupWindow extends CustomWindow {
     super(width, height).init.then(() => {
       this.win.addClass('PopupWindow');
       this.name("Popup Window");
-      this.win.append(`<div style="background-color: var(--bg-color);">${url}</div><iframe src="${url}"></iframe>`)
+      var img = $(newProxyClient(url))
+      $(`<div style="background-color: var(--bg-color);">${url}</div>`).after(img).appendTo(this.win)
     });
   }
 }
