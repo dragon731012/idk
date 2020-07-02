@@ -167,9 +167,13 @@ class BrowserWindow extends CustomWindow {
   }
 
   addBookmark(e=null, url={}) {
-    var bookmark = $(`<button>${"Bookmark"}</button>`).appendTo('.bookmarks');
-    var goto = this.win.find('.iframe:visible')[0].src;
-    var data = { url: goto, img: "", text: "", ...url };
+    var data = {
+      url: this.win.find('.searchbox').val(),
+      img: this.win.find('.tab.selected img')[0].src,
+      text: this.win.find('.tab.selected span').text(),
+      ...url
+    };
+    var bookmark = $(`<button><img class="icon" src="${data.img}" />${data.text}</button>`).appendTo('.bookmarks');
     bookmark.click(this.navigateTo.bind(this, data.url));
     console.log(data);
     if (e) BrowserWindow.prefs.bookmarks.push(data);
@@ -197,7 +201,7 @@ class BrowserWindow extends CustomWindow {
   
   // TODO: make Tab class?
   newTab(url="about:blank") {
-    var tab = $(`<div class="tab selected"><img /><span>New Tab</span><button class="closeTab fas fa-times"></button></div>`).insertBefore(this.win.find('.appinfo .fa-plus'));
+    var tab = $(`<div class="tab selected"><img class="icon" /><span>New Tab</span><button class="closeTab fas fa-times"></button></div>`).insertBefore(this.win.find('.appinfo .fa-plus'));
     tab[0].url = url;
     var img = $(newProxyClient(url)).appendTo(this.win).addClass('iframe');
     tab.mousedown(focus.bind(this));
