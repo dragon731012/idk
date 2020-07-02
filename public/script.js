@@ -111,7 +111,6 @@ class BrowserWindow extends CustomWindow {
     localStorage.prefs = JSON.stringify(BrowserWindow.prefs);
   });
   static version = 1;
-  static PROXY_URL = 'https://proxy--funblaster22.repl.co/http:/';
   
   constructor(width=0, height=0) {
     var parent = super(width, height);
@@ -142,7 +141,7 @@ class BrowserWindow extends CustomWindow {
       /* TODO: re-implement
       this.win.find('.fa-arrow-left').click(() => void this.win.find('iframe:visible')[0].contentWindow.postMessage('navBack', '*'));
       this.win.find('.fa-arrow-right').click(() => void this.win.find('iframe:visible')[0].contentWindow.postMessage('navForward', '*'));
-      this.win.find('.fa-redo-alt').click(() => void this.win.find('iframe:visible')[0].contentWindow.postMessage('reload', '*'));*/
+      this.win.find('.fa-redo-alt').click(() => void this.win.find('iframe:visible')[0].contentWindow.postMessage('reload', '*'));
       
       window.addEventListener('message', e => {
         console.log(e.data);
@@ -160,7 +159,7 @@ class BrowserWindow extends CustomWindow {
           case 'open':
             new PopupWindow(e.data.url); break;  // TODO: resolve url to domain
         }
-      });
+      });*/
     })();
   }
 
