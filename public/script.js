@@ -7,7 +7,7 @@ $(function() {
   myWin = new BrowserWindow();
 });
 
-class CustomWindow {
+export class CustomWindow {
   static template = fetch("/CustomWindow.html").then(d => d.text());
   
   constructor(width=0, height=0, {left=0, top=0, name="", icon="", groupWith="CustomWindow"} = {}) {
@@ -49,7 +49,7 @@ class CustomWindow {
   close() {
     this.win.css('animation-name', 'fadeout');
     window.setTimeout($().remove.bind(this.win), 300);
-    window.setTimeout(location.reload, 1000);
+    window.setTimeout(location.reload.bind(location), 1000);
   }
 
   topbarVisible(visible) {
