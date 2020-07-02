@@ -41,7 +41,10 @@ window.onresize = function(ev) {
 socket.on('meta', function(data) {
   console.log(data);
   $('.tab.selected span').text(data.title);  // TODO: change correct tab title even if focus changed
-  document.querySelector('link[rel=icon]').href = data.icon;
+  $('.searchbox').val(data.url);
+  $('.tab.selected')[0].url = data.url;
+  // TODO: could cause problems if page finishes loading wile another tab is selected
+  //document.querySelector('link[rel=icon]').href = data.icon;
 });
   
 socket.on('dialog', function(dialog) {

@@ -43,6 +43,7 @@ io.on('connection', async socket => {
     page.on('load', async () => {
       socket.emit('meta', {
         title: await page.title(),
+        url: page.url(),
         icon: await page.$$eval('link[rel]', elems => elems.find(i => i.relList.contains('icon')).href)
       });
     });
