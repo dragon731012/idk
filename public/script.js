@@ -136,37 +136,16 @@ class BrowserWindow extends CustomWindow {
         }
       })
       .on('keyup', ev => ev.stopPropagation());
+      
       this.win.find('.fa-star').click(this.addBookmark.bind(this));
       this.win.find('.fa-arrow-left').click(() => void this.win.find('.iframe:visible')[0].socket.emit("navigate", -1));
       this.win.find('.fa-arrow-right').click(() => void this.win.find('.iframe:visible')[0].socket.emit("navigate", 1));
       this.win.find('.fa-redo-alt').click(() => void this.win.find('.iframe:visible')[0].socket.emit("navigate", 0));
-      /* TODO: re-implement
-      this.win.find('.fa-arrow-left').click(() => void this.win.find('iframe:visible')[0].contentWindow.postMessage('navBack', '*'));
-      this.win.find('.fa-arrow-right').click(() => void this.win.find('iframe:visible')[0].contentWindow.postMessage('navForward', '*'));
-      this.win.find('.fa-redo-alt').click(() => void this.win.find('iframe:visible')[0].contentWindow.postMessage('reload', '*'));
-      
-      window.addEventListener('message', e => {
-        console.log(e.data);
-        switch (e.data.type) {
-          case 'title':
-            this.win.find('.tab.selected span').text(e.data.val); break;
-          case 'href':
-            const URL = e.data.val.replace(BrowserWindow.PROXY_URL, '')
-            this.win.find('.searchbox').val(URL);
-            this.win.find('.tab.selected')[0].url = URL;
-            // TODO: could cause problems if page finishes loading wile another tab is selected 
-            break;
-          case 'icon':
-            this.win.find('.tab.selected img').attr('src', e.data.val); break;
-          case 'open':
-            new PopupWindow(e.data.url); break;  // TODO: resolve url to domain
-        }
-      });*/
     })();
   }
 
   static isURL(str) {
-    return !!str.match(/^(https?:\/\/)|^(\w+\.)+(com|net|co|gov|org|gg|me|info|io)/i);
+    return !!str.match(/^(https?:\/\/)|^[a-zA-Z0-9\-\._~]+\.(com|net|co|gov|org|gg|me|info|io)/i);
   }
 
   addBookmark(e=null, url={}) {
