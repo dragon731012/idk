@@ -49,6 +49,7 @@ class CustomWindow {
   close() {
     this.win.css('animation-name', 'fadeout');
     window.setTimeout($().remove.bind(this.win), 300);
+    window.setTimeout(location.reload, 1000);
   }
 
   topbarVisible(visible) {
