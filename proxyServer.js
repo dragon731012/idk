@@ -95,7 +95,10 @@ io.on('connection', async socket => {
     await pageWait;
     console.log(`LOADING PAGE (${msg})...`);
     var startTime = new Date();
-    await page.goto(msg);
+    if (typeof(msg) === 'string')
+      await page.goto(msg);
+    else
+      (msg == 1) ? await page.goForward() : await page.goBack();
     console.log("LOADED in", new Date() - startTime, 'ms');
   });
   
