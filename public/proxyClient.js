@@ -1,4 +1,4 @@
-export default function(startURL='https://wikipedia.org') {
+function newProxyClient(startURL='https://wikipedia.org') {
 const img = document.createElement('img');
 // Ignore Glitch.com `'io' is undefined` warnings; imported in index.html
 const socket = io();

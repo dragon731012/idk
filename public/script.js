@@ -1,10 +1,9 @@
-import newProxyClient from './proxyClient.js'
-
 var myWin;
 $(function() {
   $('head').append('<link rel="stylesheet" href="/CustomWindow.scss">');
   $('[href="//button.glitch.me/css/glitch.css"]').remove()
   myWin = new BrowserWindow();
+  new PopupWindow();
 });
 
 export class CustomWindow {
