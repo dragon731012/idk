@@ -1,7 +1,6 @@
 var myWin;
 $(function() {
   $('head').append('<link rel="stylesheet" href="/CustomWindow.scss">');
-  $('[href="//button.glitch.me/css/glitch.css"]').remove()
   myWin = new BrowserWindow();
 });
 
